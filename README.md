@@ -10,7 +10,6 @@ Repository: [github.com/gareth-paragon/paragon-plugin-and-mcp](https://github.co
 | :--- | :--- | :--- |
 | Plugin | **ParaDOCS** | Rules, skills, MCP manifest, logos |
 | MCP server | **Paragon Knowledge** | Search and retrieve approved Paragon documentation |
-| Skill | **edit-platform-docs** | Cross-repo platform documentation editing |
 | Skill | **paragon-tech-docs** | Paragon technical Markdown authoring (Overview, UK English) |
 
 Detailed reader docs:

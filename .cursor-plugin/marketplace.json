@@ -14,7 +14,7 @@
       "source": "./",
       "description": "Paragon Knowledge MCP, ParaDOCS convert tooling, and authoring rules for tech writers.",
       "version": "0.1.0",
-      "logo": "assets/logo.svg",
+      "logo": "assets/logo.png",
       "keywords": [
         "paragon",
         "paradocs",
