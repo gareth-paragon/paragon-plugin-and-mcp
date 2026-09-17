@@ -1,0 +1,7 @@
+{
+  "name": "paragon-tech-docs",
+  "displayName": "Paragon tech docs",
+  "version": "0.1.0",
+  "description": "Writes and edits Paragon technical Markdown with a required Overview, UK English, published tone of voice, and no promotional copy.",
+  "skills": ["skills/paragon-tech-docs"]
+}
