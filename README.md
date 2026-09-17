@@ -1,88 +1,32 @@
 # ParaDOCS — Cursor Team Marketplace
 
-Paragon Cursor plugin and MCP package for the Team Marketplace. One root plugin bundles **Paragon Knowledge** (documentation MCP), **ParaDOCS** convert tooling, authoring **rules**, and two **skills**.
+ParaDOCS is a Cursor plugin for consistent technical documentation authoring. It provides reusable rules and the `paragon-tech-docs` skill for writing and reviewing Markdown documentation.
 
-Repository: [github.com/gareth-paragon/paragon-plugin-and-mcp](https://github.com/gareth-paragon/paragon-plugin-and-mcp)
+Repository: [github.com/paragon-cursor/paradocs](https://github.com/paragon-cursor/paradocs)
 
 ## What you get
 
-| Component | Name in Cursor | Purpose |
-| :--- | :--- | :--- |
-| Plugin | **ParaDOCS** | Rules, skills, MCP manifest, logos |
-| MCP server | **Paragon Knowledge** | Search and retrieve approved Paragon documentation |
-| Skill | **paragon-tech-docs** | Paragon technical Markdown authoring (Overview, UK English) |
+- **ParaDOCS rules** for structure, style, terminology, and documentation quality.
+- **`paragon-tech-docs` skill** for guided technical documentation authoring.
+- **Team Marketplace packaging** with the ParaDOCS logo and metadata.
 
-Detailed reader docs:
+## Install from the Paragon Team Marketplace
 
-- [ParaDOCS plugin overview](docs/ParaDOCS-Plugin-Overview.md)
-- [Paragon Knowledge MCP overview](docs/Paragon-Knowledge-MCP-Overview.md)
-- [Operator build notes](docs/paradocs-plugin-notes.md)
+1. Open Cursor team settings and go to **Team Marketplace**.
+2. Find **ParaDOCS** in the Paragon marketplace and enable it for yourself or **Everyone** in the team.
+3. Open Cursor and use the ParaDOCS rules and the `paragon-tech-docs` skill while authoring documentation.
 
-## Team Marketplace install
+The installed plugin is ready to use after it is enabled. It does not require local path configuration or additional runtime setup.
 
-Your Cursor admin imports this GitHub repository as a Team Marketplace (`.cursor-plugin/marketplace.json` lists one root plugin with `"source": "./"`). After merge, refresh the marketplace (**Auto Refresh** if enabled, or re-import the repo URL) so Customize picks up the latest commit.
+## Repository layout
 
-After approval:
+- `.cursor-plugin/` — plugin and marketplace manifests.
+- `rules/` — Cursor rules for documentation authoring.
+- `skills/paragon-tech-docs/` — the technical documentation skill.
+- `docs/` — plugin and authoring references.
 
-1. **Customize → Plugins** — enable **ParaDOCS**.
-2. **Configure** — set **PARAGON_CURSOR_DOCS_ROOT** and **PARAGON_PARADOCS_REPO** (and optional corpora paths). These map to `${…}` placeholders in `mcp.json`.
-3. **Customize → MCP** — confirm **Paragon Knowledge** shows **Connected**.
-4. **Reload Window** if tools do not appear immediately.
+## Scope
 
-The bundled `mcp.json` starts the server with:
+The repository may contain Knowledge-related implementation code for separate development, but that code is not wired into or shipped as part of the installed ParaDOCS plugin. The installed package is intentionally limited to the rules and skills above.
 
-```json
-"command": "node",
-"args": ["${CURSOR_PLUGIN_ROOT}/dist/index.js"]
-```
-
-On Linux and macOS you can also use `scripts/run-mcp.sh` (loads `.env.local` when present). Windows pilots can use `scripts/run-mcp.cmd` or `scripts/install-local-plugin.ps1` from a clone.
-
-## Configuration
-
-Set environment variables so the MCP can read your local documentation trees. Copy [`examples/local.env.example`](examples/local.env.example) to `.env.local` at the plugin root (gitignored) or configure `env` in MCP settings. See [`examples/mcp.json.example`](examples/mcp.json.example).
-
-| Variable | Role |
-| :--- | :--- |
-| `PARAGON_CURSOR_DOCS_ROOT` | Cursor guides repo root (required) |
-| `PARAGON_PARADOCS_REPO` | Technical Documentation repo (required) |
-| `PARAGON_TECH_ARCH_SOURCE` | SharePoint sync root for convert/OCR scripts |
-| `PARAGON_TECH_ARCH_CORPUS` | Markdown output for convert/OCR scripts |
-| `PARAGON_CURSOR_CORPORA` | Optional extra corpora (`id=path;…`) |
-
-Reload Cursor after changing paths.
-
-## Build from source
-
-Requires **Node.js 20+**.
-
-```bash
-npm install
-npm run build
-```
-
-This runs the Vite MCP Apps UI build and esbuild bundle (`dist/index.js`, `dist/ui/mcp-app.html`). The marketplace package commits a prebuilt `dist/` so installs work without running npm.
-
-## Local clone (pilots)
-
-```bash
-git clone https://github.com/gareth-paragon/paragon-plugin-and-mcp.git
-cd paragon-plugin-and-mcp
-npm install && npm run build
-```
-
-Windows: `powershell -ExecutionPolicy Bypass -File .\scripts\install-local-plugin.ps1`
-
-Alternatively: **Customize → Plugins → + Add → From Local Repo** and select the clone (must contain `.cursor-plugin/marketplace.json`).
-
-## MCP Apps chrome
-
-Paragon Knowledge tools return `_meta.ui.resourceUri: ui://paragon-knowledge/app.html`. The server registers that MCP Apps resource from `dist/ui/mcp-app.html` (built from `ui/src/mcp-app.ts` and `ui/src/chrome.css`). Tool results render in a branded **Paragon Knowledge** card (header wordmark, status line, search/result layouts) instead of bare JSON when the host supports MCP Apps.
-
-## Assets
-
-Header wordmarks and the MCP chip live under `assets/` (`paragon-logo-*.png`, `logo.svg`). Rebuild the UI after replacing branding files: `npm run build:ui`.
-
-## Safety
-
-Use only admin-approved plugins and MCP servers. Paragon Knowledge reads configured documentation folders; it does not write to the guides repo.
+For a detailed description of the packaged experience, see [docs/ParaDOCS-Plugin-Overview.md](docs/ParaDOCS-Plugin-Overview.md).
