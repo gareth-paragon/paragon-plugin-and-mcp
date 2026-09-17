@@ -1,0 +1,22 @@
+---
+description: Numbered H2s on Paragon Cursor chapter guide pages (pointer to Paragon §5.7)
+globs: "{user-guide,admin-guide}/**/*.md"
+alwaysApply: false
+---
+
+# Guide headings
+
+Authoritative heading rules: `Paragon_Markdown_Style_Rules.md` §5.7 (numbered heading dots) and §5.6 (no bold in ATX headings).
+
+## Repo reminder
+
+On chapter pages whose H1 is numbered (`# N. Title`), every `##` heading **MUST** use `## N.M. Title` (full stop after the section id). Nested detail may use `## N.M.P. Title` or `###` as the page already does. Keep cross-links and anchors in sync when renumbering.
+
+Exceptions (descriptive H2s allowed):
+
+- `user-guide/Home.md` (landing / index)
+- Runbooks and workflow docs that are not numbered chapters (for example `Admin-Dashboard-Runbook.md`, `Cursor-Docs-as-Code.md`, `Cursor-Docs-Changelog.md`)
+
+If a short lead-in does not deserve a section number, do **not** use an H2. Use a bold lead-in or a paragraph under the H1 instead.
+
+Punctuation: see `no-em-dashes-in-markdown` (no em dashes or en-dash substitutes in any `.md` file).

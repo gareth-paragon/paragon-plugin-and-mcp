@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "paragon-knowledge": {
+      "command": "node",
+      "args": ["${CURSOR_PLUGIN_ROOT}/dist/index.js"],
+      "env": {
+        "PARAGON_CURSOR_DOCS_ROOT": "${PARAGON_CURSOR_DOCS_ROOT}",
+        "PARAGON_PARADOCS_REPO": "${PARAGON_PARADOCS_REPO}",
+        "PARAGON_CURSOR_CORPORA": "${PARAGON_CURSOR_CORPORA}"
+      },
+      "_meta": {
+        "ideToolIconPath": "./assets/logo.svg"
+      }
+    }
+  }
+}

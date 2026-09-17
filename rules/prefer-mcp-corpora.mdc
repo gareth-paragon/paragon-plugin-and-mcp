@@ -1,0 +1,21 @@
+---
+description: Prefer Paragon Knowledge corpora over guessing for documentation facts
+alwaysApply: true
+---
+
+# Prefer MCP corpora over guessing
+
+When answering questions about Paragon Cursor guides, Technical Architecture docs, or Abbey View wiki content, use the Paragon Knowledge MCP tools before inventing facts.
+
+## Required behavior
+
+1. Inventory with `list_corpora` when unsure what is loaded.
+2. Search with `search_docs`; fetch with `get_doc` / `get_doc_metadata` using corpus paths (`user-guide/...`, `tech-arch/...`, `abbey-view/...`).
+3. Cite the corpus path you used. If search returns an unavailable-title notice, report that honestly; do not fabricate a body.
+4. Diagram labels may only appear under `## Extracted diagram text` (OCR). Treat OCR accuracy as variable. When a tool result includes `diagramOcr` / `unreadDiagrams`, tell the user that referenced diagrams could not be read and answers based only on prose may be incomplete.
+5. Do not claim content exists in a corpus that is not loaded or configured.
+
+## Out of scope
+
+- General programming help unrelated to these corpora.
+- Editing live SharePoint or wiki binaries; convert to Markdown first via approved ParaDOCS / convert tooling.

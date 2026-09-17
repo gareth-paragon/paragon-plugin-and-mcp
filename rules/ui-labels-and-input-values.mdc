@@ -1,0 +1,44 @@
+---
+description: Bold UI labels; put typed/input values in Markdown code
+globs: "**/*.md"
+alwaysApply: true
+---
+
+# UI labels and input values in Markdown
+
+Whenever you **create or edit** Markdown (guides, corpus pages, operator docs, changelogs, chat-driven drafts), apply these conventions. They apply to **human and AI** authoring alike.
+
+## Required behavior
+
+1. **UI elements MUST be bold** - menus, buttons, dialog titles, tabs, field labels, form options, toggles, and other on-screen chrome. Match the product's capitalization. Do not use bold for generic emphasis or hype.
+   - Ordinary Markdown prose: `**Admin Panel**`.
+   - Inside ADO wiki HTML widgets (`div`, `table`, styled lists): `<strong>Admin Panel</strong>`. Do **not** use `<span style="font-weight: 600;">` - Cursor preview strips those styles and UI labels look plain.
+2. **Input values MUST be code** - values the reader types, pastes, or enters (paths, emails, IDs, example strings, literal option values, commands to run). Use inline backticks for short values (`example-value`); use a fenced code block for multi-line input. Do not leave typed values as plain prose.
+
+## Examples
+
+| Kind | Write |
+| :--- | :--- |
+| Menu / button | Open **Settings**, then choose **Plugins** |
+| Form option label | Select **Required** under **Team rules** |
+| Value to type | Set the email to `user@example.com` |
+| Multi-line sample | Put the JSON in a fenced `json` (or `text`) code block |
+
+## Distinctions
+
+| Situation | Treatment |
+| :--- | :--- |
+| On-screen label of a control | Bold (`**Email**`) |
+| Value typed into that control | Code (`` `user@example.com` ``) |
+| File, flag, or API name in prose | Code (already covered by style §7.1) |
+| Company or product name where spelling matters | Bold is allowed per style §13.3; not a substitute for UI bold |
+
+## Source of truth
+
+Aligns with `Paragon_Markdown_Style_Rules.md` §7.1 (input values / literals) and §13.3 (UI elements). Prefer this rule when it is stricter than surrounding prose habits.
+
+## Out of scope
+
+- Do not bold ATX heading lines (style §5.6).
+- Do not wrap entire sentences or paragraphs as code just to emphasize them.
+- Formal AI02 policy text need not be rewritten solely for this rule.

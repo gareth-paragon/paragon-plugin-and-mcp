@@ -1,0 +1,34 @@
+---
+description: Do not narrate as third-person Paragon in agent-written Markdown
+globs: "**/*.md"
+alwaysApply: true
+---
+
+# No third-person Paragon narration
+
+Do **not** write prose that treats Paragon as a third-person actor (for example "Paragon labels…", "Paragon has…", "Paragon enables…", "Paragon enforces…", "At Paragon, …").
+
+## Preferred voice
+
+Use **passive** (or direct second-person instructions) so the subject is the capability, setting, or reader:
+
+| Avoid | Prefer |
+| :--- | :--- |
+| Paragon labels the approved entries in two groups | Approved entries fall into two practical groups |
+| Paragon has two source control providers enabled | Two source control providers are enabled for the team |
+| Paragon enables GitLab and Azure DevOps at team level | GitLab and Azure DevOps are enabled at team level |
+| Paragon enforces three Required team rules | Three Required team rules are enforced in the **Admin Panel** |
+| At Paragon, use only admin-approved triggers | Use only admin-approved triggers |
+
+## Allowed uses of "Paragon"
+
+Keep "Paragon" when it is a **name or scope label**, not an actor:
+
+- Proper nouns and account wording: Paragon company account, Paragon GitLab tenant, `paragon-cc`
+- Possessive naming of artefacts: Paragon's Cursor organization, Paragon's Enterprise subscription
+- Policy titles and links: AI02, "use of Cursor at Paragon is governed by…"
+- Audience labels: Paragon users (when distinguishing from upstream Cursor docs)
+
+## Out of scope
+
+Do not rewrite formal policy text in `AI02-Business-Use-of-Artificial-Intelligence.md` solely for this rule. Historical changelog rows need not be backfilled.

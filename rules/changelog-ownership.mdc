@@ -1,0 +1,40 @@
+---
+description: Route changelog rows to the owning repo only; no duplicate history across changelogs
+alwaysApply: true
+---
+
+# Changelog ownership (multi-repo)
+
+When a task changes documentation, tooling, or config, add a changelog row in the **owning** repository only. Do not duplicate the same change across multiple changelogs.
+
+## Canonical map
+
+| Repository | Changelog | Owns |
+| :--- | :--- | :--- |
+| GitLab `cursor-test` | `admin-guide/Cursor-Docs-Changelog.md` | User/Admin guides, NAC, Michu/Trundle, dashboards, docs-as-code workflow, `scripts/`, CI, `AGENTS.md` |
+| ParaDOCS plugin | Changelog section in `docs/ParaDOCS-Plugin-Overview.md` | Plugin packaging, local install, bundled rules/skills, plugin operator docs |
+| Paragon Knowledge | Changelog section in `docs/Paragon-Knowledge-MCP-Overview.md` | MCP tools/Apps UI, corpora wiring, convert/OCR scripts that feed the MCP, MCP operator docs |
+| Technical Documentation | `CHANGELOG.md` | `paradocs.py`, convert tooling, corpus pipeline, ParaDOCS app settings |
+
+## Anti-duplication
+
+1. One logical change → **one** row in the owning changelog.
+2. Cross-cutting work (for example a plugin rename that also needs a User Guide sentence) → one row per **owning surface** only. Do not copy the same "What changed" text into a second changelog.
+3. Prefer linking across docs ("see overview §6") over restating the same history in two tables.
+4. Do not edit the ADO `CursorAI` / `CursorAI-2` mirror for changelog or content. ADO is read-only and overwritten by the GitLab mirror.
+5. Ignore `node_modules/**` and `michu/snapshots/**` when searching for changelogs.
+
+## Format by owner
+
+| Owner | Format |
+| :--- | :--- |
+| `cursor-test` | UK date `## DD-MM-YYYY` sections; table with Area, What changed, Link, sync_id, sync_repo, request_form_ids, michu, Why. See `changelog-cursor-docs.mdc`. |
+| Plugin repo (ParaDOCS) | UK date `### DD-MM-YYYY` under the Changelog section in `docs/ParaDOCS-Plugin-Overview.md`; same table columns and `pending` `sync_id`. |
+| Plugin repo (Paragon Knowledge) | Same format under the Changelog section in `docs/Paragon-Knowledge-MCP-Overview.md`. |
+| Technical Documentation | Keep a Changelog format with ParaDOCS version headings from `VERSION` in `paradocs.py`. Match existing subheadings and voice in that file. |
+
+## Required behavior
+
+1. Before adding a row, confirm which repo (and which product overview, on the plugin repo) owns the files you changed.
+2. If no meaningful change occurred, state that no changelog update is required.
+3. When editing on `cursor-test`, follow `changelog-cursor-docs.mdc` for Area routing and row format.

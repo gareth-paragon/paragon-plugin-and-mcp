@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paragon Knowledge</title>
+  </head>
+  <body>
+    <div id="app" class="card">
+      <header class="card-header">
+        <!-- Header wordmark when Apps mounts; chip image in tool content is the chat fallback. -->
+        <img id="logo-dark" class="logo logo-dark" alt="" aria-hidden="true" />
+        <img id="logo-light" class="logo logo-light" alt="" aria-hidden="true" />
+        <div class="header-text">
+          <div class="product-name">Paragon Knowledge</div>
+          <div id="status" class="status">Loading…</div>
+        </div>
+      </header>
+      <main id="body" class="card-body">
+        <p class="muted">Waiting for tool result…</p>
+      </main>
+    </div>
+    <script type="module" src="./src/mcp-app.ts"></script>
+  </body>
+</html>

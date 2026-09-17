@@ -1,0 +1,45 @@
+---
+description: Update Cursor-Docs-Changelog.md when Cursor docs, config, or related tooling change
+globs: "**/admin-guide/**,**/config/**,**/michu/**,**/trundle/**,**/user-guide/**,**/scripts/**,**/package.json,**/package-lock.json,**/.gitlab-ci.yml,**/azure-pipelines.yml,**/AGENTS.md,**/admin-guide/Cursor-Docs-Changelog.md"
+alwaysApply: false
+---
+
+# Maintain Cursor-Docs-Changelog.md
+
+Whenever you change documentation, config, Michu tooling, dashboards, scripts, or CI on GitLab `cursor-test`, add a row to `admin-guide/Cursor-Docs-Changelog.md` in the same task.
+
+## Routing (Area column)
+
+| Change location | Area |
+| :-------------- | :--- |
+| `user-guide/` | User Guide |
+| `admin-guide/` except `Cursor-Docs-as-Code.md` | Admin Guide |
+| `admin-guide/Cursor-Docs-as-Code.md` or docs-as-code workflow | Docs-as-code workflow |
+| `config/` | Config (NAC) |
+| `michu/` | Michu |
+| `trundle/` | Trundle |
+| `scripts/`, `package.json`, pipelines, `AGENTS.md`, dashboard runbooks | ADO tooling and dashboards |
+
+## Entry format
+
+Add or extend the table under `## DD-MM-YYYY` (UK date format; newest date sections first):
+
+```markdown
+## DD-MM-YYYY
+
+| Area | What changed | Link | sync_id | sync_repo | request_form_ids | michu | Why |
+| :--- | :----------- | :--- | :------ | :-------- | :--------------- | :---- | :-- |
+| User Guide | Brief description | `user-guide/Page.md` | pending | gitlab | admin-initiated | - | Optional one-line reason |
+```
+
+## Required behavior
+
+1. Add a new `## DD-MM-YYYY` section above older dates, or append rows to the same-day table when part of the same publish batch. Keep date sections newest-first.
+2. Always write **`pending`** in the `sync_id` column - CI backfills the GitLab hash.
+3. Set **`sync_repo`** to `gitlab` for all changes in that repository.
+4. Set **`michu`** to `yes` only for rows from a Michu doc-drift merge request; otherwise `-`.
+5. One row per logical change; include **Link** as a relative path to the primary file or doc.
+6. Do not edit the ADO mirror for changelog rows - ADO is read-only and overwritten by the mirror.
+7. If no meaningful change occurred, state that no changelog update is required.
+
+For Paragon Knowledge / ParaDOCS plugin doc changes in the plugin repo, add rows to the Changelog section of `docs/ParaDOCS-Plugin-Overview.md` or `docs/Paragon-Knowledge-MCP-Overview.md` (by product). See `changelog-ownership.mdc` for the full multi-repo map and anti-duplication rules.
