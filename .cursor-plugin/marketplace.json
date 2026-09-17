@@ -5,24 +5,23 @@
     "email": "gareth.howells@paragon-cc.co.uk"
   },
   "metadata": {
-    "description": "ParaDOCS plugin and Paragon Knowledge MCP for Cursor Team Marketplace",
+    "description": "ParaDOCS skills and rules for consistent technical documentation authoring in Cursor Team Marketplace",
     "version": "0.1.0"
   },
   "plugins": [
     {
       "name": "paradocs",
       "source": "./",
-      "description": "Paragon Knowledge MCP, ParaDOCS convert tooling, and authoring rules for tech writers.",
+      "description": "ParaDOCS skills and rules for consistent technical documentation authoring in Cursor.",
       "version": "0.1.0",
       "logo": "assets/logo.png",
       "keywords": [
         "paragon",
         "paradocs",
-        "paragon-knowledge",
         "docs",
         "markdown",
-        "mcp",
-        "tech-arch"
+        "technical-writing",
+        "cursor"
       ]
     }
   ]
