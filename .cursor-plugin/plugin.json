@@ -2,55 +2,22 @@
   "name": "paradocs",
   "displayName": "ParaDOCS",
   "version": "0.1.0",
-  "description": "Paragon Knowledge MCP, ParaDOCS convert tooling, and authoring rules for tech writers.",
+  "description": "ParaDOCS skills and rules for consistent technical documentation authoring in Cursor.",
   "author": {
     "name": "Paragon",
     "email": "gareth.howells@paragon-cc.co.uk"
   },
-  "repository": "https://github.com/gareth-paragon/paragon-plugin-and-mcp",
+  "repository": "https://github.com/paragon-cursor/paradocs",
   "logo": "assets/logo.png",
   "keywords": [
     "paragon",
     "paradocs",
-    "paragon-knowledge",
     "docs",
     "markdown",
-    "mcp",
-    "tech-arch"
+    "technical-writing",
+    "cursor"
   ],
   "license": "UNLICENSED",
   "skills": "./skills/",
-  "rules": "./rules/",
-  "mcpServers": "./mcp.json",
-  "variables": {
-    "type": "object",
-    "properties": {
-      "PARAGON_CURSOR_DOCS_ROOT": {
-        "type": "string",
-        "title": "Cursor guides repo root",
-        "description": "Local path to the Cursor guides repository (cursor-test or equivalent)."
-      },
-      "PARAGON_PARADOCS_REPO": {
-        "type": "string",
-        "title": "Technical Documentation repo root",
-        "description": "Local path to the Technical Documentation repository that contains corpus/ folders."
-      },
-      "PARAGON_CURSOR_CORPORA": {
-        "type": "string",
-        "title": "Extra corpora (optional)",
-        "description": "Semicolon-separated id=path pairs for additional corpora, e.g. tech-arch=C:/path/corpus/tech-arch;abbey-view=C:/path/corpus/abbey-view."
-      },
-      "PARAGON_TECH_ARCH_SOURCE": {
-        "type": "string",
-        "title": "Tech-arch SharePoint source (optional)",
-        "description": "SharePoint sync root for convert/OCR scripts only; not required for read/search MCP tools."
-      },
-      "PARAGON_TECH_ARCH_CORPUS": {
-        "type": "string",
-        "title": "Tech-arch corpus output (optional)",
-        "description": "Markdown output folder for convert/OCR scripts only."
-      }
-    },
-    "required": ["PARAGON_CURSOR_DOCS_ROOT", "PARAGON_PARADOCS_REPO"]
-  }
+  "rules": "./rules/"
 }
