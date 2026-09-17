@@ -1,0 +1,23 @@
+---
+description: Use "please" when telling users not to self-serve MCP, plugin, or security workarounds
+alwaysApply: true
+---
+
+# Polite user prohibitions
+
+When instructing **users** not to install unapproved MCP servers or plugins, add unapproved entries in `mcp.json`, or bypass the **Team Marketplace**, lead with **Please**.
+
+Examples:
+
+- *Please do not install unapproved servers yourself.*
+- *Please do not install or call external MCP servers via Git or local commands.*
+
+## Applies to
+
+- Chat replies and user-facing guidance.
+- Drafting prohibition text in `user-guide/` and `admin-guide/` (except verbatim Admin Panel rule quotes).
+
+## Does not apply to
+
+- Mandatory **Admin Panel** team-rule text quoted verbatim in the Administration Guide.
+- Technical error messages, logs, or agent-to-agent/system instructions.

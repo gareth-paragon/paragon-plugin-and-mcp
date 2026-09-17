@@ -1,0 +1,53 @@
+---
+description: Consult companion platform docs and match each host doc format and tone on edits
+alwaysApply: true
+---
+
+# Platform docs consistency
+
+When creating or updating documentation in this multi-root workspace, consult the relevant platform docs and match the **host document's** structure, widgets, heading style, and tone.
+
+## Primary platform docs
+
+| Topic | Where to read first |
+| :--- | :--- |
+| ParaDOCS plugin | `docs/ParaDOCS-Plugin-Overview.md` (includes Changelog), `docs/paradocs-plugin-notes.md` |
+| Paragon Knowledge | `docs/Paragon-Knowledge-MCP-Overview.md` (includes Changelog) |
+| Cursor platform (canonical) | `cursor-test`: `admin-guide/Cursor-Docs-as-Code.md` (including §2 HITL morning checklist), pages under `user-guide/` and `admin-guide/` you touch, `admin-guide/Cursor-Docs-Changelog.md` |
+| Markdown style | Bundled `docs/Paragon_Markdown_Style_Rules.md` (plugin) or canonical `cursor-test/Paragon_Markdown_Style_Rules.md` |
+| ParaDOCS convert app | Technical Documentation `CHANGELOG.md`, `paradocs.py`, related settings docs |
+
+## "Consider" means
+
+Before claiming documentation work is done:
+
+1. Check whether companion pages need a factual update for the same change.
+2. If yes, edit them in the same task (surgical edits, not parallel doc trees).
+3. **Trim stale content** in the same task: anything superseded, replaced, or no longer relevant (see `trim-stale-docs.mdc`). Do not only append.
+4. Do **not** require rewriting every corpus `.md` (tech-arch / abbey-view) unless the change is about those corpora.
+
+## Match host format and tone
+
+1. Read the target file and a neighbouring section or sibling page before drafting.
+2. Reuse that page's patterns: numbered H2s, ADO wiki widgets, tables, callout style, operator reference vs second-person guide voice.
+3. Follow Paragon Markdown style and plugin overlays (no em dashes, no third-person Paragon actor in guides).
+4. Do not impose User Guide procedure-box HTML on plain operator docs (overview, changelog), or flatten wiki widgets into bare Markdown when editing guides.
+5. Prefer surgical edits over wholesale rewrites. Keep existing heading hierarchy and column layouts. When new facts replace old ones, **delete or shorten** the old text rather than stacking both.
+
+## HITL morning checklist
+
+When an edit changes how operators run morning checks (Michu, Trundle, CI, Security Agents, Automations, changelog Summary, vendor links, plugin MCP Connected, Admin Dashboard glance), update `cursor-test` `admin-guide/Cursor-Docs-as-Code.md` §2 in the same task. See `hitl-morning-checklist-sync.mdc`.
+
+## Changelog routing
+
+After doc edits, route changelog rows per `changelog-ownership.mdc`. Do not duplicate history across repos.
+
+## Kanban (Paragon Docs roadmap)
+
+When work maps to roadmap cards on `cursor-test`, follow `kanban-board-sync.mdc`. Ask before creating a new card for an uncovered task.
+
+## Out of scope
+
+- Inventing parallel operator docs when an existing page already covers the topic.
+- Editing the ADO mirror for content that lives on GitLab `cursor-test`.
+- Style-only rewrites with no factual change (see Michu / Trundle guardrails on `cursor-test`).

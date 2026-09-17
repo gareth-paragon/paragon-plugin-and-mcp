@@ -1,0 +1,25 @@
+{
+  "name": "paradocs",
+  "displayName": "ParaDOCS",
+  "version": "0.1.0",
+  "description": "Paragon Knowledge MCP, ParaDOCS convert tooling, and authoring rules for tech writers.",
+  "author": {
+    "name": "Paragon",
+    "email": "gareth.howells@paragon-cc.co.uk"
+  },
+  "repository": "https://github.com/gareth-paragon/paragon-plugin-and-mcp",
+  "logo": "assets/logo.svg",
+  "keywords": [
+    "paragon",
+    "paradocs",
+    "paragon-knowledge",
+    "docs",
+    "markdown",
+    "mcp",
+    "tech-arch"
+  ],
+  "license": "UNLICENSED",
+  "skills": "./skills/",
+  "rules": "./rules/",
+  "mcpServers": "./mcp.json"
+}

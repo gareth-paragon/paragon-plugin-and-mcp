@@ -1,0 +1,37 @@
+---
+description: Write agent Markdown to Paragon_Markdown_Style_Rules.md
+alwaysApply: true
+---
+
+# Paragon Markdown style (authoritative)
+
+Whenever you **create or edit** Markdown (guides, corpus pages, README, changelogs, chat-driven drafts) you **MUST** follow Paragon Markdown style.
+
+## Source of truth
+
+1. **Bundled copy (plugin):** `docs/Paragon_Markdown_Style_Rules.md` in this ParaDOCS plugin repository. Prefer this path when the plugin is installed or this repo is open.
+2. **Canonical upstream:** GitLab `cursor-test` root `Paragon_Markdown_Style_Rules.md`. Refresh the bundle with `python scripts/sync_paragon_markdown_style.py` (use `--check` in CI or before release).
+3. Do **not** invent a parallel style guide. Do **not** edit the ADO `CursorAI` mirror for style or content.
+4. Before writing or reformatting, open or re-read at least: layout §2, headings §5, lists §6, code §7, links §8, prose §12-§13.
+
+## Required behavior
+
+1. Apply the rules in new prose and in edits (sentence-case headings, no bold in ATX headings, fenced code languages, no decorative `---` on customer-facing guide pages, §5.7 numbered heading dots where the page uses numbered chapters).
+2. Cite § numbers in review comments when calling out style issues.
+3. After substantial guide prose edits on `cursor-test`, run `npm run lint:md` on touched paths when available (advisory). Automated spell checkers (cSpell, Vale) are disabled in this workspace.
+
+## Precedence (plugin overlays)
+
+| Topic | Prefer |
+| :--- | :--- |
+| Em dashes | `no-em-dashes-in-markdown` (no U+2014) |
+| Paragon as actor | `no-third-person-paragon` (passive / second person) |
+| UI labels and typed values | `ui-labels-and-input-values` (bold UI; code for input values) |
+| Fixed line length | `markdown-no-fixed-line-length` (do not reflow to an 80-column target) |
+| Numbered chapter H2s | `guide-headings-and-punctuation` |
+| Formal AI02 policy text | Do not rewrite solely for style |
+
+## Out of scope
+
+- Do not paste the whole style guide into every reply.
+- Do not copy these conventions into user-level `~/.cursor/rules`.

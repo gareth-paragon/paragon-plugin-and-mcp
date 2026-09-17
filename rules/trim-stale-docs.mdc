@@ -1,0 +1,43 @@
+---
+description: When editing docs, remove or shorten superseded, replaced, or irrelevant content so guides do not only grow
+alwaysApply: true
+---
+
+# Trim stale documentation
+
+Documentation work is **not add-only**. Whenever you create or edit Markdown (User/Admin guides, plugin operator docs, Michu reports, platform overviews, changelogs as needed), actively look for text that is **superseded, replaced, or no longer relevant** and **delete or shorten** it in the same task.
+
+If agents only append, guides bloat and readers get contradictory instructions.
+
+## Required behaviour
+
+Before claiming a doc edit is done:
+
+1. **Scan the sections you touched** (and nearby related sections) for stale names, steps, settings, entry points, billing claims, Coming Soon promises, and duplicate explanations of the same fact.
+2. **Remove or shorten** material that the new or corrected facts replace. Prefer one clear current story over "also formerly…" piles unless a one-line formerly note helps reviewers.
+3. **Update companions** the same way: if page A drops a feature, pages that still describe it as current need the same trim (see `platform-docs-consistency.mdc`).
+4. **Say what you removed** when useful: Michu reports use **What we removed from our guides**; for human edits, the changelog "What changed" / "Why" should mention trims when they are material.
+
+## Typical triggers
+
+| Situation | Action |
+| :--- | :--- |
+| Feature, setting, UI path, or workflow was removed or renamed | Delete obsolete steps; use the new name; drop dead links |
+| New guidance replaces old guidance on the same topic | Keep the new text; delete the old paragraph/section instead of stacking both |
+| "Coming Soon" or roadmap text is now factually wrong | Update or remove it |
+| Duplicate marketing / repeated policy with no extra Paragon value | Prefer one short Paragon-specific summary; delete the redundant copy when you are already in that section |
+| Intentionally disabled / turned-off policy note | **Keep** the policy note (do not delete "not enabled" wording just because upstream still ships the feature elsewhere) |
+
+## Relationship to other automations
+
+| Actor | Role |
+| :--- | :--- |
+| **Michu** | Must trim when **upstream Cursor docs** drop or replace product behaviour we still document (`michu/automation-prompt.md`, `upstream-doc-drift.mdc`) |
+| **Trundle** | Internal hygiene (links, facts, inventory); not a substitute for product-stale trims during authoring |
+| **Human / agent + ParaDOCS** | Same trim duty on every doc edit, including plugin and Technical Documentation operator docs |
+
+## Out of scope
+
+- Style-only or tone-only rewrites with no factual stale content.
+- Deleting formal AI02 policy text solely for brevity.
+- Editing the ADO `CursorAI` mirror for content that lives on GitLab `cursor-test`.

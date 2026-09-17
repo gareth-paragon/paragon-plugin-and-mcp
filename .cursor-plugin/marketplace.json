@@ -1,18 +1,29 @@
 {
-  "name": "paragon-cursor-plugins",
+  "name": "paradocs-marketplace",
   "owner": {
     "name": "Paragon",
     "email": "gareth.howells@paragon-cc.co.uk"
   },
   "metadata": {
-    "description": "Paragon Cursor plugins for Team Marketplace (skill-first packages)."
+    "description": "ParaDOCS plugin and Paragon Knowledge MCP for Cursor Team Marketplace",
+    "version": "0.1.0"
   },
-  "pluginRoot": "plugins",
   "plugins": [
     {
-      "name": "paragon-tech-docs",
-      "source": "paragon-tech-docs",
-      "description": "Paragon technical Markdown authoring skill: required Overview, UK English, published tone, no promotional copy."
+      "name": "paradocs",
+      "source": "./",
+      "description": "Paragon Knowledge MCP, ParaDOCS convert tooling, and authoring rules for tech writers.",
+      "version": "0.1.0",
+      "logo": "assets/logo.svg",
+      "keywords": [
+        "paragon",
+        "paradocs",
+        "paragon-knowledge",
+        "docs",
+        "markdown",
+        "mcp",
+        "tech-arch"
+      ]
     }
   ]
 }

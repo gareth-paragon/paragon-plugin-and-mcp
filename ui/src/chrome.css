@@ -1,0 +1,257 @@
+:root {
+  --pd-accent: #004f71;
+  --pd-bg: #ffffff;
+  --pd-surface: #f7f9fb;
+  --pd-text: #1a1f24;
+  --pd-muted: #5c6770;
+  --pd-border: #d5dde3;
+  --pd-danger-bg: #f8f1f1;
+  --pd-danger-border: #c45c5c;
+  --pd-danger-text: #6b2a2a;
+  --pd-warn-bg: #f7f3ea;
+  --pd-warn-border: #b8892d;
+  --pd-warn-text: #5c4510;
+  --pd-font: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+html[data-theme="dark"] {
+  --pd-bg: #1a1f24;
+  --pd-surface: #242b32;
+  --pd-text: #eef2f5;
+  --pd-muted: #a8b3bd;
+  --pd-border: #3a4550;
+  --pd-danger-bg: #2e2222;
+  --pd-danger-border: #a85a5a;
+  --pd-danger-text: #f0c8c8;
+  --pd-warn-bg: #2e2a1f;
+  --pd-warn-border: #c4a35a;
+  --pd-warn-text: #f0e2b8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--pd-text);
+  font-family: var(--pd-font);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.card {
+  margin: 0;
+  border: 1px solid var(--pd-border);
+  border-top: 3px solid var(--pd-accent);
+  border-radius: 6px;
+  background: var(--pd-bg);
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--pd-border);
+  background: var(--pd-surface);
+}
+
+.logo {
+  display: block;
+  height: 28px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Agent chrome is dark by default: show white wordmark unless host forces light. */
+.logo-light {
+  display: none;
+}
+
+.logo-dark {
+  display: block;
+}
+
+html[data-theme="light"] .logo-dark {
+  display: none;
+}
+
+html[data-theme="light"] .logo-light {
+  display: block;
+}
+
+.header-text {
+  min-width: 0;
+  flex: 1;
+}
+
+.product-name {
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  color: var(--pd-text);
+}
+
+.status {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--pd-muted);
+}
+
+.card-body {
+  padding: 10px 12px 12px;
+  max-height: 320px;
+  overflow: auto;
+}
+
+.muted {
+  margin: 0;
+  color: var(--pd-muted);
+}
+
+/* Results stay plain; brand chrome lives in .card-header only. */
+.hit-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.hit {
+  border: none;
+  border-radius: 0;
+  padding: 8px 0;
+  background: transparent;
+  border-bottom: 1px solid var(--pd-border);
+}
+
+.hit:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.hit:first-child {
+  padding-top: 0;
+}
+
+.hit.unavailable {
+  border-color: var(--pd-border);
+  background: transparent;
+}
+
+.hit-title {
+  font-weight: 600;
+  color: var(--pd-text);
+  margin: 0 0 2px;
+}
+
+.hit.unavailable .hit-title {
+  color: var(--pd-danger-text);
+}
+
+.hit.unread-diagrams .hit-title {
+  color: var(--pd-warn-text);
+}
+
+.notice.diagram-ocr {
+  border-color: var(--pd-warn-border);
+  background: var(--pd-warn-bg);
+  color: var(--pd-warn-text);
+  margin-bottom: 8px;
+}
+
+.hit-meta {
+  margin: 0 0 4px;
+  font-size: 11px;
+  color: var(--pd-muted);
+  word-break: break-all;
+}
+
+.hit-snippet {
+  margin: 0;
+  color: var(--pd-muted);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.notice {
+  border: 1px solid var(--pd-danger-border);
+  border-radius: 4px;
+  padding: 10px;
+  background: var(--pd-danger-bg);
+  color: var(--pd-danger-text);
+}
+
+.notice p {
+  margin: 0 0 8px;
+}
+
+.notice p:last-child {
+  margin-bottom: 0;
+}
+
+.job-panel {
+  border: 1px solid var(--pd-border);
+  border-radius: 4px;
+  padding: 10px;
+  background: var(--pd-surface);
+}
+
+.job-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  background: var(--pd-accent);
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.job-badge.idle {
+  background: var(--pd-muted);
+}
+
+.job-message {
+  margin: 0;
+  color: var(--pd-text);
+}
+
+.job-id {
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: var(--pd-muted);
+  word-break: break-all;
+}
+
+.result-panel {
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.result-pre {
+  margin: 0;
+  padding: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--pd-text);
+  max-height: 260px;
+  overflow: auto;
+}

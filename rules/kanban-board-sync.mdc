@@ -1,0 +1,51 @@
+---
+description: Keep Paragon Docs Kanban cards in sync; ask before creating new roadmap cards
+alwaysApply: true
+---
+
+# Kanban board sync (Paragon Docs roadmap)
+
+The agent-native board lives on GitLab `cursor-test` at `.devtool/features/` (Kanban Markdown extension). Cards are local-only (gitignored); still update them.
+
+When `cursor-test` is in the workspace, the project rule at `cursor-test/.cursor/rules/kanban-board-sync.mdc` is canonical for rip-job exceptions and hook behaviour. This plugin rule applies the same sync duty across plugin, MCP, and multi-repo work.
+
+## When you must update cards
+
+After you **start**, **finish**, **block**, or **materially change** work that maps to a board card:
+
+1. Find the matching `.md` under `cursor-test/.devtool/features/` or `cursor-test/.devtool/features/done/`.
+2. Update `status` (`backlog` | `todo` | `in-progress` | `review` | `done`), `modified` (UTC ISO), and acceptance checkboxes in the body.
+3. If moving to `done`, set `completedAt` and move the file into `.devtool/features/done/`.
+4. If moving out of `done`, set `completedAt: null` and move the file back to `.devtool/features/`.
+5. Keep YAML serialization exact (double-quoted strings; bare `null` for empty nullable fields).
+
+When you **start** work on an existing card in the same session, set `status` to `in-progress` and refresh `modified`.
+
+## New tasks with no matching card
+
+When the user asks for a **new** task and no card clearly covers it:
+
+1. **Ask** whether to create a Kanban card before creating one (unless the user already asked you to add a card).
+2. If yes, create `cursor-test/.devtool/features/<slug>-YYYY-MM-DD.md` with:
+   - `id` matching the filename stem
+   - `status`: **`todo`** by default; set **`in-progress`** only when you are starting work in the same turn
+   - `labels`: tag the work (`plugin`, `mcp`, `docs`, `corpus`, `tooling`, and similar)
+   - `priority`: `high` | `medium` | `low` from user intent or existing board norms
+   - `created` and `modified`: UTC ISO timestamps
+   - Body: `# Title`, brief scope, and `## Acceptance` checkboxes
+3. Pick a sensible `order` after scanning sibling cards (for example `a6` after `a5`).
+
+Do not create cards silently for drive-by fixes or one-line questions.
+
+## Rip jobs (tech-arch convert / OCR)
+
+Do not mark the OCR card `done` until a **final** OCR pass has run after text convert finished (card may sit in `review` until confirmed).
+
+## Hooks (reminder only)
+
+On `cursor-test`, project hooks call `kanban_board_reminder.py` on `sessionStart` only (context reminder). No `stop` follow-up nag. Hooks do **not** auto-edit cards.
+
+## Do not
+
+- Invent parallel trackers; this board is the checklist for the Paragon Docs roadmap.
+- Skip board updates because `.devtool/` is gitignored.

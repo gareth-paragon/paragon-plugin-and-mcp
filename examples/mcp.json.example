@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "paragon-knowledge": {
+      "command": "node",
+      "args": ["${CURSOR_PLUGIN_ROOT}/dist/index.js"],
+      "env": {
+        "PARAGON_CURSOR_DOCS_ROOT": "/path/to/cursor-test",
+        "PARAGON_PARADOCS_REPO": "/path/to/technical-documentation",
+        "PARAGON_CURSOR_CORPORA": "tech-arch=/path/to/technical-documentation/corpus/tech-arch;abbey-view=/path/to/technical-documentation/corpus/abbey-view;drupal-docs=/path/to/drupal-docs"
+      },
+      "_meta": {
+        "ideToolIconPath": "./assets/logo.svg"
+      }
+    }
+  }
+}
