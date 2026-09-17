@@ -142,6 +142,20 @@ Apply the relevant parts of canonical §13:
 
 ## Security and privacy
 
+
+## Paragon deltas
+
+Apply these repository-specific requirements with the style above:
+
+- Read the target and a neighbouring section, consult relevant companion docs, match the host structure and tone, make surgical edits, and remove stale or duplicate content.
+- - Numbered chapter H2s use `N.M.` and a full stop except landing pages and descriptive runbooks. Keep anchors in sync. Never enforce fixed line lengths.
+  - - Never use em or en dashes as sentence breaks. Never stack NOTE, IMPORTANT, WARNING, TIP, or equivalent callouts.
+    - - Do not narrate Paragon as a third-person actor. Prefer passive or second-person voice. Proper names and scope labels are allowed.
+      - - Bold UI labels. Put typed values, paths, IDs, options, and commands in code. Use `<strong>` in ADO HTML.
+        - - Use Paragon Knowledge MCP before guessing Paragon Cursor, Technical Architecture, or Abbey View facts. Cite corpus paths and report unavailable titles or OCR gaps.
+          - - Changelog rows belong only in the owning product overview. Operational morning-check changes also update GitLab `cursor-test` Docs-as-Code §2, separate from verification.
+            - - Update existing `.devtool/features/` cards with UTC status, modified time, checks, and YAML; ask before new cards; do not mark OCR done before final OCR. Never run `git commit` or `git push` without explicit approval.
+              - 
 Apply these technical-documentation defaults:
 
 1. Use obviously fake people, customers, domains, identifiers, and credentials.
