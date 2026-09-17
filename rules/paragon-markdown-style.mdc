@@ -1,37 +1,23 @@
 ---
-description: Write agent Markdown to Paragon_Markdown_Style_Rules.md
+description: Write agent Markdown to Paragon Markdown Style Rules.md
 alwaysApply: true
 ---
 
-# Paragon Markdown style (authoritative)
+# Paragon Markdown style
 
-Whenever you **create or edit** Markdown (guides, corpus pages, README, changelogs, chat-driven drafts) you **MUST** follow Paragon Markdown style.
-
-## Source of truth
-
-1. **Bundled copy (plugin):** `docs/Paragon_Markdown_Style_Rules.md` in this ParaDOCS plugin repository. Prefer this path when the plugin is installed or this repo is open.
-2. **Canonical upstream:** GitLab `cursor-test` root `Paragon_Markdown_Style_Rules.md`. Refresh the bundle with `python scripts/sync_paragon_markdown_style.py` (use `--check` in CI or before release).
-3. Do **not** invent a parallel style guide. Do **not** edit the ADO `CursorAI` mirror for style or content.
-4. Before writing or reformatting, open or re-read at least: layout §2, headings §5, lists §6, code §7, links §8, prose §12-§13.
+For every Markdown guide, corpus page, README, changelog, or draft, follow `docs/Paragon_Markdown_Style_Rules.md` and canonical `cursor-test/Paragon_Markdown_Style_Rules.md`. Do not invent a parallel guide or edit the ADO mirror. Re-read §§2, 5, 6, 7, 8, 12, and 13 before editing.
 
 ## Required behavior
 
-1. Apply the rules in new prose and in edits (sentence-case headings, no bold in ATX headings, fenced code languages, no decorative `---` on customer-facing guide pages, §5.7 numbered heading dots where the page uses numbered chapters).
-2. Cite § numbers in review comments when calling out style issues.
-3. After substantial guide prose edits on `cursor-test`, run `npm run lint:md` on touched paths when available (advisory). Automated spell checkers (cSpell, Vale) are disabled in this workspace.
+Use sentence-case headings, no bold in ATX headings, fenced code languages, no decorative rules on customer-facing guides, and numbered heading dots on numbered chapters. Run `npm run lint:md` after substantial guide edits when available.
 
-## Precedence (plugin overlays)
+## Paragon deltas
 
-| Topic | Prefer |
-| :--- | :--- |
-| Em dashes | `no-em-dashes-in-markdown` (no U+2014) |
-| Paragon as actor | `no-third-person-paragon` (passive / second person) |
-| UI labels and typed values | `ui-labels-and-input-values` (bold UI; code for input values) |
-| Fixed line length | `markdown-no-fixed-line-length` (do not reflow to an 80-column target) |
-| Numbered chapter H2s | `guide-headings-and-punctuation` |
-| Formal AI02 policy text | Do not rewrite solely for style |
-
-## Out of scope
-
-- Do not paste the whole style guide into every reply.
-- Do not copy these conventions into user-level `~/.cursor/rules`.
+- Read target and sibling docs, consult relevant companions, match host tone, make surgical edits, and trim stale or duplicate content.
+- Numbered chapter H2s use `N.M.` and a full stop except landing pages/runbooks. Keep anchors in sync. Never enforce fixed line lengths.
+- No em or en dashes as sentence breaks. Never stack NOTE, IMPORTANT, WARNING, TIP, or equivalent callouts.
+- Do not narrate Paragon as a third-person actor. Prefer passive or second-person voice. Proper names and scope labels are allowed.
+- Bold UI labels. Put typed values, paths, IDs, options, and commands in code. Use `<strong>` in ADO HTML.
+- Use Paragon Knowledge MCP before guessing Paragon Cursor, Technical Architecture, or Abbey View facts. Cite corpus paths and report unavailable titles or OCR gaps.
+- Changelog rows belong only in the owning product overview. Operational morning-check changes also update GitLab `cursor-test` Docs-as-Code §2, separate from verification.
+- Update existing `.devtool/features/` cards with UTC status/YAML; ask before new cards; do not mark OCR done before final OCR. Never run `git commit` or `git push` without explicit approval.
