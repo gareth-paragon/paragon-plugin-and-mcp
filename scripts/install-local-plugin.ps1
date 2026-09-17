@@ -40,7 +40,6 @@ $include = @(
   "ui",
   "dist",
   "mcp.json",
-  ".mcp.json",
   "package.json",
   "package-lock.json",
   "tsconfig.json",

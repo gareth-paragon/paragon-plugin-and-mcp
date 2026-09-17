@@ -1,5 +1,5 @@
 node_modules/
-dist/
+# dist/ is committed for Team Marketplace installs (bundled MCP + MCP Apps UI).
 .env
 .env.*
 *.log

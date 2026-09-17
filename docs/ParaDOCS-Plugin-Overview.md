@@ -1,6 +1,6 @@
 # ParaDOCS plugin overview
 
-Early prototype documentation for the **ParaDOCS** Cursor plugin. The plugin bundles **Paragon Knowledge** (MCP) plus authoring rules and skills. Not yet on the Team Marketplace unless your admin has approved it.
+Documentation for the **ParaDOCS** Cursor plugin. The plugin bundles **Paragon Knowledge** (MCP) plus authoring rules and skills. Available on the Paragon Team Marketplace when your admin has imported [github.com/gareth-paragon/paragon-plugin-and-mcp](https://github.com/gareth-paragon/paragon-plugin-and-mcp).
 
 MCP tools, corpora, and server config: [`Paragon-Knowledge-MCP-Overview.md`](Paragon-Knowledge-MCP-Overview.md). Operator build notes: [`paradocs-plugin-notes.md`](paradocs-plugin-notes.md).
 
@@ -31,7 +31,7 @@ Ask your admin for the correct folder paths if you are not sure.
 
 ### 3.1. From a local clone (typical for pilots)
 
-1. Clone [paragon-plugin-and-mcp](https://gitlab.com/gareth.howells778/paragon-plugin-and-mcp) to your machine.
+1. Clone [paragon-plugin-and-mcp](https://github.com/gareth-paragon/paragon-plugin-and-mcp) to your machine.
 2. Open PowerShell in that folder and run:
 
 ```powershell

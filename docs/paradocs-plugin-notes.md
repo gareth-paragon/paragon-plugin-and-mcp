@@ -1,6 +1,6 @@
 # ParaDOCS / Paragon Knowledge: build notes
 
-Working notes for the **ParaDOCS** Cursor plugin and **Paragon Knowledge** MCP (local test first; Team Marketplace later). Documentation use cases only.
+Working notes for the **ParaDOCS** Cursor plugin and **Paragon Knowledge** MCP (local pilots and Team Marketplace). Documentation use cases only.
 
 - Plugin install and authoring: [`ParaDOCS-Plugin-Overview.md`](ParaDOCS-Plugin-Overview.md) (Changelog at the end of that page).
 - MCP tools and corpora: [`Paragon-Knowledge-MCP-Overview.md`](Paragon-Knowledge-MCP-Overview.md) (Changelog at the end of that page).
@@ -41,7 +41,7 @@ When tools run in the Agent, results should render in a branded **MCP Apps** pan
 
 1. ~~Finish tech-arch SharePoint rip + OCR; wire Abbey View under `external/abbey-view`.~~ Done (first-class corpora; paths `tech-arch/...`, `abbey-view/...`; `list_corpora`). Final OCR catch-up after online-only PDF converts: all tech-arch `.md` files have `ocr_pass: true` (operator detail in this file and the product overviews; pilot overviews stay install/use focused).
 2. ~~Headless ParaDOCS in Technical Documentation repo.~~ Done (`paradocs.py convert`; JSON status / exit codes; no Word COM).
-3. Plugin package: `.cursor-plugin/plugin.json`, `mcp.json` / `.mcp.json` with `ideToolIconPath`, rules batch (including always-on `trim-stale-docs`), bundled style guide, logos under `assets/`. Skill: `skills/edit-platform-docs/`. No bundled hooks (rules + skill cover authoring). Still needed: more skills/subagents; Team Marketplace later.
+3. Plugin package: `.cursor-plugin/plugin.json`, `mcp.json` with `ideToolIconPath` and `${CURSOR_PLUGIN_ROOT}`, rules batch (including always-on `trim-stale-docs`), bundled style guide, logos under `assets/`. Skills: `edit-platform-docs`, `paragon-tech-docs`. No bundled hooks (rules + skills cover authoring). Team Marketplace: GitHub `gareth-paragon/paragon-plugin-and-mcp` (root plugin `paradocs`).
 4. ~~Local install via `~/.cursor/plugins/local/paradocs`.~~ Done (`scripts/install-local-plugin.ps1` copies into `plugins/local`; junctions are ignored by Cursor discovery).
 5. ~~MCP Apps UI chrome (professional panel) on key tools.~~ Done (every tool uses shared `ui://paragon-knowledge/app.html`; specialised search / unavailable / `job_status` layouts). Full `convert_*` tools still on the plugin card.
 6. Multi-root workspace: `paragon-docs.code-workspace` (cursor-test + `paragon-plugin-and-mcp` + Technical Documentation + read-only ADO mirror).

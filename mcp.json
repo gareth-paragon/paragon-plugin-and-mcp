@@ -3,6 +3,13 @@
     "paragon-knowledge": {
       "command": "node",
       "args": ["${CURSOR_PLUGIN_ROOT}/dist/index.js"],
+      "env": {
+        "PARAGON_CURSOR_DOCS_ROOT": "${PARAGON_CURSOR_DOCS_ROOT}",
+        "PARAGON_PARADOCS_REPO": "${PARAGON_PARADOCS_REPO}",
+        "PARAGON_CURSOR_CORPORA": "${PARAGON_CURSOR_CORPORA}",
+        "PARAGON_TECH_ARCH_SOURCE": "${PARAGON_TECH_ARCH_SOURCE}",
+        "PARAGON_TECH_ARCH_CORPUS": "${PARAGON_TECH_ARCH_CORPUS}"
+      },
       "_meta": {
         "ideToolIconPath": "./assets/logo.svg",
         "ideToolTitles": {

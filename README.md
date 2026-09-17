@@ -21,13 +21,14 @@ Detailed reader docs:
 
 ## Team Marketplace install
 
-Your Cursor admin adds this marketplace from the GitHub repo (`.cursor-plugin/marketplace.json` uses Option A: root plugin with `"source": "./"`).
+Your Cursor admin imports this GitHub repository as a Team Marketplace (`.cursor-plugin/marketplace.json` lists one root plugin with `"source": "./"`). After merge, refresh the marketplace (**Auto Refresh** if enabled, or re-import the repo URL) so Customize picks up the latest commit.
 
 After approval:
 
 1. **Customize → Plugins** — enable **ParaDOCS**.
-2. **Customize → MCP** — confirm **Paragon Knowledge** shows **Connected**.
-3. **Reload Window** if tools do not appear immediately.
+2. **Configure** — set **PARAGON_CURSOR_DOCS_ROOT** and **PARAGON_PARADOCS_REPO** (and optional corpora paths). These map to `${…}` placeholders in `mcp.json`.
+3. **Customize → MCP** — confirm **Paragon Knowledge** shows **Connected**.
+4. **Reload Window** if tools do not appear immediately.
 
 The bundled `mcp.json` starts the server with:
 
@@ -61,7 +62,7 @@ npm install
 npm run build
 ```
 
-This runs the Vite MCP Apps UI build and TypeScript compile (`dist/index.js`, `ui/mcp-app.html`). The marketplace package expects a prebuilt `dist/` in the installed plugin copy.
+This runs the Vite MCP Apps UI build and esbuild bundle (`dist/index.js`, `dist/ui/mcp-app.html`). The marketplace package commits a prebuilt `dist/` so installs work without running npm.
 
 ## Local clone (pilots)
 
@@ -75,9 +76,13 @@ Windows: `powershell -ExecutionPolicy Bypass -File .\scripts\install-local-plugi
 
 Alternatively: **Customize → Plugins → + Add → From Local Repo** and select the clone (must contain `.cursor-plugin/marketplace.json`).
 
-## Assets note
+## MCP Apps chrome
 
-Binary branding PNGs under `assets/` (`paragon-logo-*.png`) are required for the MCP Apps header. If they are missing from your clone, copy them from the canonical GitLab release or design assets before building the UI.
+Paragon Knowledge tools return `_meta.ui.resourceUri: ui://paragon-knowledge/app.html`. The server registers that MCP Apps resource from `dist/ui/mcp-app.html` (built from `ui/src/mcp-app.ts` and `ui/src/chrome.css`). Tool results render in a branded **Paragon Knowledge** card (header wordmark, status line, search/result layouts) instead of bare JSON when the host supports MCP Apps.
+
+## Assets
+
+Header wordmarks and the MCP chip live under `assets/` (`paragon-logo-*.png`, `logo.svg`). Rebuild the UI after replacing branding files: `npm run build:ui`.
 
 ## Safety
 
