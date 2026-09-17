@@ -1,0 +1,18 @@
+{
+  "name": "paragon-cursor-plugins",
+  "owner": {
+    "name": "Paragon",
+    "email": "gareth.howells@paragon-cc.co.uk"
+  },
+  "metadata": {
+    "description": "Paragon Cursor plugins for Team Marketplace (skill-first packages)."
+  },
+  "pluginRoot": "plugins",
+  "plugins": [
+    {
+      "name": "paragon-tech-docs",
+      "source": "paragon-tech-docs",
+      "description": "Paragon technical Markdown authoring skill: required Overview, UK English, published tone, no promotional copy."
+    }
+  ]
+}
