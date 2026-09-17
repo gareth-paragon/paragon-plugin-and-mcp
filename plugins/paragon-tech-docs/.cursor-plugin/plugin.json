@@ -1,0 +1,13 @@
+{
+  "name": "paragon-tech-docs",
+  "displayName": "Paragon tech docs",
+  "version": "0.1.0",
+  "description": "Writes and edits Paragon technical Markdown with a required Overview, UK English, published tone of voice, and no promotional copy.",
+  "author": {
+    "name": "Paragon",
+    "email": "gareth.howells@paragon-cc.co.uk"
+  },
+  "keywords": ["paragon", "docs", "markdown", "tech-writing", "uk-english"],
+  "license": "UNLICENSED",
+  "skills": ["./skills/paragon-tech-docs"]
+}
