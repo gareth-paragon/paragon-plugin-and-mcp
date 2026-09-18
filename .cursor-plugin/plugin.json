@@ -1,7 +1,7 @@
 {
   "name": "paradocs",
   "displayName": "ParaDOCS",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ParaDOCS skills and rules for consistent technical documentation authoring in Cursor.",
   "author": {
     "name": "Paragon",
