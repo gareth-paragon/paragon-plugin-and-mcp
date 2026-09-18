@@ -5,15 +5,15 @@
     "email": "gareth.howells@paragon-cc.co.uk"
   },
   "metadata": {
-    "description": "ParaDOCS convert MCP, skills, and rules for Word/PDF to Markdown and technical documentation authoring in Cursor Team Marketplace",
-    "version": "0.2.0"
+    "description": "Convert Word/PDF to Markdown in Cursor with bundled paradocs-convert MCP, rules, and paragon-tech-docs skill. Prerequisites: Paragon team sign-in with Team Marketplace access; Python 3.10+ with venv; network on first convert only (PyPI). Optional: PARADOCS_DEFAULT_OUTPUT_DIR. Remediation: install Python 3.10+, reopen Cursor; Linux python3-venv; allow PyPI once if pip fails; enable from Team Marketplace, Reload Window, check paradocs-convert Connected. No separate paradocs.py install.",
+    "version": "0.2.1"
   },
   "plugins": [
     {
       "name": "paradocs",
       "source": "./",
-      "description": "ParaDOCS convert MCP, skills, and rules for Word/PDF to Markdown and technical documentation authoring in Cursor.",
-      "version": "0.2.0",
+      "description": "Convert Word/PDF to Markdown in Cursor with bundled paradocs-convert MCP, rules, and paragon-tech-docs skill. Prerequisites: signed into Paragon team with Team Marketplace access; Python 3.10+ with venv; network on first convert only (PyPI for .paradocs-venv). Optional: Configure PARADOCS_DEFAULT_OUTPUT_DIR. If Python is missing or too old, install 3.10+ and reopen Cursor; Linux needs python3-venv; allow PyPI once if pip fails; enable ParaDOCS from Team Marketplace, Reload Window, check paradocs-convert Connected. Engine is bundled; do not install paradocs.py separately.",
+      "version": "0.2.1",
       "logo": "assets/logo.png",
       "keywords": [
         "paragon",
