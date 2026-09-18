@@ -5,22 +5,26 @@
     "email": "gareth.howells@paragon-cc.co.uk"
   },
   "metadata": {
-    "description": "ParaDOCS skills and rules for consistent technical documentation authoring in Cursor Team Marketplace",
-    "version": "0.1.1"
+    "description": "ParaDOCS convert MCP, skills, and rules for Word/PDF to Markdown and technical documentation authoring in Cursor Team Marketplace",
+    "version": "0.2.0"
   },
   "plugins": [
     {
       "name": "paradocs",
       "source": "./",
-      "description": "ParaDOCS skills and rules for consistent technical documentation authoring in Cursor.",
-      "version": "0.1.1",
+      "description": "ParaDOCS convert MCP, skills, and rules for Word/PDF to Markdown and technical documentation authoring in Cursor.",
+      "version": "0.2.0",
       "logo": "assets/logo.png",
       "keywords": [
         "paragon",
         "paradocs",
         "docs",
         "markdown",
+        "convert",
+        "docx",
+        "pdf",
         "technical-writing",
+        "mcp",
         "cursor"
       ]
     }

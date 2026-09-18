@@ -5,7 +5,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 if [[ ! -f dist/index.js ]]; then
-  echo "Paragon Knowledge: dist/index.js missing. Run npm install && npm run build in the plugin root." >&2
+  echo "ParaDOCS Convert: dist/index.js missing. Run npm install && npm run build in the plugin root." >&2
   exit 1
 fi
 

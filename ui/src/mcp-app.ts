@@ -36,6 +36,33 @@ type JobStatusPayload = {
   status?: string;
   message?: string;
   jobId?: string | null;
+  inputPath?: string;
+  outputPath?: string;
+  inputDir?: string;
+  outputDir?: string;
+  progress?: {
+    index?: number;
+    total?: number;
+    counts?: Record<string, number>;
+    lastSource?: string;
+    lastStatus?: string;
+  };
+  counts?: Record<string, number>;
+};
+
+type ConvertPayload = {
+  view?: "convert_result" | "convert_progress";
+  status?: string;
+  message?: string;
+  jobId?: string;
+  profile?: string;
+  inputPath?: string;
+  outputPath?: string;
+  inputDir?: string;
+  outputDir?: string;
+  chars?: number;
+  reason?: string;
+  limitations?: string;
 };
 
 type ResultPayload = {
@@ -48,7 +75,7 @@ type ResultPayload = {
   [key: string]: unknown;
 };
 
-type AppPayload = SearchPayload | JobStatusPayload | ResultPayload;
+type AppPayload = SearchPayload | JobStatusPayload | ConvertPayload | ResultPayload;
 
 const PREVIEW_CHARS = 4000;
 
@@ -94,7 +121,11 @@ function isSearchPayload(payload: AppPayload): payload is SearchPayload {
 }
 
 function isJobPayload(payload: AppPayload): payload is JobStatusPayload {
-  return payload.view === "job_status";
+  return payload.view === "job_status" || payload.view === "convert_progress";
+}
+
+function isConvertResultPayload(payload: AppPayload): payload is ConvertPayload {
+  return payload.view === "convert_result";
 }
 
 function renderSearch(payload: SearchPayload & { totalHits?: number }): void {
@@ -172,19 +203,112 @@ function renderSearch(payload: SearchPayload & { totalHits?: number }): void {
     .join("")}</ul>`;
 }
 
-function renderJob(payload: JobStatusPayload): void {
+function renderJob(payload: JobStatusPayload | ConvertPayload): void {
   const status = (payload.status ?? "idle").toLowerCase();
+  const isBatch = Boolean(payload.inputDir || payload.progress?.total);
   statusEl.textContent =
-    status === "idle" ? "Convert job idle" : `Convert job: ${payload.status ?? "unknown"}`;
-  const badgeClass = status === "idle" ? "job-badge idle" : "job-badge";
+    status === "idle"
+      ? "Convert job idle"
+      : isBatch && payload.progress?.total
+        ? `Converting ${payload.progress.index ?? 0}/${payload.progress.total}`
+        : `Convert: ${payload.status ?? "unknown"}`;
+
+  const badgeClass =
+    status === "completed" || status === "ok"
+      ? "job-badge completed"
+      : status === "failed"
+        ? "job-badge failed"
+        : status === "running" || status === "queued"
+          ? "job-badge running"
+          : "job-badge idle";
+
+  const paths: string[] = [];
+  if (payload.inputPath) {
+    paths.push(`Source: ${payload.inputPath}`);
+  }
+  if (payload.outputPath) {
+    paths.push(`Output: ${payload.outputPath}`);
+  }
+  if (payload.inputDir) {
+    paths.push(`Input folder: ${payload.inputDir}`);
+  }
+  if (payload.outputDir) {
+    paths.push(`Output folder: ${payload.outputDir}`);
+  }
+
+  const counts = payload.progress?.counts ?? payload.counts;
+  const countsLine =
+    counts && Object.keys(counts).length
+      ? `<p class="job-meta">${escapeHtml(
+          Object.entries(counts)
+            .map(([k, v]) => `${k}: ${v}`)
+            .join(" · "),
+        )}</p>`
+      : "";
+
   const jobId = payload.jobId
     ? `<p class="job-id">Job ID: ${escapeHtml(String(payload.jobId))}</p>`
     : "";
+  const profile = payload.profile
+    ? `<p class="job-meta">Profile: ${escapeHtml(String(payload.profile))}</p>`
+    : "";
+
   bodyEl.innerHTML = `
     <div class="job-panel">
       <div class="${badgeClass}">${escapeHtml(payload.status ?? "idle")}</div>
       <p class="job-message">${escapeHtml(payload.message ?? "No convert jobs yet.")}</p>
+      ${profile}
+      ${paths.map((line) => `<p class="job-meta">${escapeHtml(line)}</p>`).join("")}
+      ${countsLine}
       ${jobId}
+    </div>`;
+}
+
+function renderConvertResult(payload: ConvertPayload): void {
+  const status = (payload.status ?? "unknown").toLowerCase();
+  statusEl.textContent =
+    status === "ok"
+      ? "Conversion complete"
+      : status === "skipped"
+        ? "Conversion skipped"
+        : "Conversion failed";
+
+  const badgeClass =
+    status === "ok"
+      ? "job-badge completed"
+      : status === "skipped"
+        ? "job-badge idle"
+        : "job-badge failed";
+
+  bodyEl.innerHTML = `
+    <div class="job-panel">
+      <div class="${badgeClass}">${escapeHtml(payload.status ?? "unknown")}</div>
+      <p class="job-message">${escapeHtml(payload.message ?? "")}</p>
+      ${
+        payload.outputPath
+          ? `<p class="job-meta"><strong>Output</strong> ${escapeHtml(payload.outputPath)}</p>`
+          : ""
+      }
+      ${
+        payload.inputPath
+          ? `<p class="job-meta"><strong>Source</strong> ${escapeHtml(payload.inputPath)}</p>`
+          : ""
+      }
+      ${
+        payload.profile
+          ? `<p class="job-meta"><strong>Profile</strong> ${escapeHtml(payload.profile)}</p>`
+          : ""
+      }
+      ${
+        typeof payload.chars === "number"
+          ? `<p class="job-meta">${payload.chars.toLocaleString()} characters extracted</p>`
+          : ""
+      }
+      ${
+        payload.limitations
+          ? `<article class="notice"><p>${escapeHtml(payload.limitations)}</p></article>`
+          : ""
+      }
     </div>`;
 }
 
@@ -252,6 +376,11 @@ function renderResult(result: CallToolResult): void {
     return;
   }
 
+  if (isConvertResultPayload(payload)) {
+    renderConvertResult(payload);
+    return;
+  }
+
   if (isJobPayload(payload)) {
     renderJob(payload);
     return;
@@ -278,7 +407,7 @@ function handleHostContextChanged(ctx: McpUiHostContext): void {
   }
 }
 
-const app = new App({ name: "Paragon Knowledge", version: "0.3.2" });
+const app = new App({ name: "ParaDOCS Convert", version: "0.2.0" });
 
 app.onteardown = async () => ({});
 app.onerror = console.error;

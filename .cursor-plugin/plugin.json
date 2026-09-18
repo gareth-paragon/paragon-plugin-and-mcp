@@ -1,8 +1,8 @@
 {
   "name": "paradocs",
   "displayName": "ParaDOCS",
-  "version": "0.1.1",
-  "description": "ParaDOCS skills and rules for consistent technical documentation authoring in Cursor.",
+  "version": "0.2.0",
+  "description": "ParaDOCS convert MCP, skills, and rules for Word/PDF to Markdown and technical documentation authoring in Cursor.",
   "author": {
     "name": "Paragon",
     "email": "gareth.howells@paragon-cc.co.uk"
@@ -14,10 +14,25 @@
     "paradocs",
     "docs",
     "markdown",
+    "convert",
+    "docx",
+    "pdf",
     "technical-writing",
+    "mcp",
     "cursor"
   ],
   "license": "UNLICENSED",
   "skills": "./skills/",
-  "rules": "./rules/"
+  "rules": "./rules/",
+  "mcpServers": "./mcp.json",
+  "variables": {
+    "type": "object",
+    "properties": {
+      "PARADOCS_DEFAULT_OUTPUT_DIR": {
+        "type": "string",
+        "title": "Default Markdown output folder (optional)",
+        "description": "When convert tools omit outputPath/outputDir, write Markdown under this folder. Leave blank to write beside each source file."
+      }
+    }
+  }
 }

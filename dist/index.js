@@ -239,10 +239,10 @@ function assignProp(target, prop, value) {
     configurable: true
   });
 }
-function getElementAtPath(obj, path9) {
-  if (!path9)
+function getElementAtPath(obj, path6) {
+  if (!path6)
     return obj;
-  return path9.reduce((acc, key) => acc?.[key], obj);
+  return path6.reduce((acc, key) => acc?.[key], obj);
 }
 function promiseAllObject(promisesObj) {
   const keys = Object.keys(promisesObj);
@@ -491,11 +491,11 @@ function aborted(x, startIndex = 0) {
   }
   return false;
 }
-function prefixIssues(path9, issues) {
+function prefixIssues(path6, issues) {
   return issues.map((iss) => {
     var _a;
     (_a = iss).path ?? (_a.path = []);
-    iss.path.unshift(path9);
+    iss.path.unshift(path6);
     return iss;
   });
 }
@@ -684,7 +684,7 @@ function treeifyError(error40, _mapper) {
     return issue2.message;
   };
   const result = { errors: [] };
-  const processError = (error41, path9 = []) => {
+  const processError = (error41, path6 = []) => {
     var _a, _b;
     for (const issue2 of error41.issues) {
       if (issue2.code === "invalid_union" && issue2.errors.length) {
@@ -694,7 +694,7 @@ function treeifyError(error40, _mapper) {
       } else if (issue2.code === "invalid_element") {
         processError({ issues: issue2.issues }, issue2.path);
       } else {
-        const fullpath = [...path9, ...issue2.path];
+        const fullpath = [...path6, ...issue2.path];
         if (fullpath.length === 0) {
           result.errors.push(mapper(issue2));
           continue;
@@ -724,9 +724,9 @@ function treeifyError(error40, _mapper) {
   processError(error40);
   return result;
 }
-function toDotPath(path9) {
+function toDotPath(path6) {
   const segs = [];
-  for (const seg of path9) {
+  for (const seg of path6) {
     if (typeof seg === "number")
       segs.push(`[${seg}]`);
     else if (typeof seg === "symbol")
@@ -13849,8 +13849,8 @@ var require_resolve = __commonJS({
       }
       return count;
     }
-    function getFullPath(resolver, id = "", normalize2) {
-      if (normalize2 !== false)
+    function getFullPath(resolver, id = "", normalize) {
+      if (normalize !== false)
         id = normalizeId(id);
       const p2 = resolver.parse(id);
       return _getFullPath(resolver, p2);
@@ -14876,8 +14876,8 @@ var require_utils = __commonJS({
       }
       return ind;
     }
-    function removeDotSegments(path9) {
-      let input = path9;
+    function removeDotSegments(path6) {
+      let input = path6;
       const output = [];
       let nextSlash = -1;
       let len = 0;
@@ -15286,8 +15286,8 @@ var require_schemes = __commonJS({
       }
       if (wsComponent.resourceName) {
         const queryIndex = wsComponent.resourceName.indexOf("?");
-        const path9 = queryIndex === -1 ? wsComponent.resourceName : wsComponent.resourceName.slice(0, queryIndex);
-        wsComponent.path = path9 && path9 !== "/" ? path9 : void 0;
+        const path6 = queryIndex === -1 ? wsComponent.resourceName : wsComponent.resourceName.slice(0, queryIndex);
+        wsComponent.path = path6 && path6 !== "/" ? path6 : void 0;
         wsComponent.query = queryIndex === -1 ? void 0 : wsComponent.resourceName.slice(queryIndex + 1);
         wsComponent.resourceName = void 0;
       }
@@ -15445,7 +15445,7 @@ var require_fast_uri = __commonJS({
       }
       return decodedScheme;
     }
-    function normalize2(uri, options) {
+    function normalize(uri, options) {
       if (typeof uri === "string") {
         uri = /** @type {T} */
         normalizeString(uri, options);
@@ -15823,7 +15823,7 @@ var require_fast_uri = __commonJS({
     }
     var fastUri = {
       SCHEMES,
-      normalize: normalize2,
+      normalize,
       resolve,
       resolveComponent,
       equal,
@@ -18800,12 +18800,12 @@ var require_dist = __commonJS({
         throw new Error(`Unknown format "${name}"`);
       return f2;
     };
-    function addFormats(ajv, list, fs8, exportName) {
+    function addFormats(ajv, list, fs6, exportName) {
       var _a;
       var _b;
       (_a = (_b = ajv.opts.code).formats) !== null && _a !== void 0 ? _a : _b.formats = (0, codegen_1._)`require("ajv-formats/dist/formats").${exportName}`;
       for (const f2 of list)
-        ajv.addFormat(f2, fs8[f2]);
+        ajv.addFormat(f2, fs6[f2]);
     }
     module.exports = exports = formatsPlugin;
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -19291,8 +19291,8 @@ function getErrorMap() {
 
 // node_modules/zod/v3/helpers/parseUtil.js
 var makeIssue = (params) => {
-  const { data, path: path9, errorMaps, issueData } = params;
-  const fullPath = [...path9, ...issueData.path || []];
+  const { data, path: path6, errorMaps, issueData } = params;
+  const fullPath = [...path6, ...issueData.path || []];
   const fullIssue = {
     ...issueData,
     path: fullPath
@@ -19408,11 +19408,11 @@ var errorUtil;
 
 // node_modules/zod/v3/types.js
 var ParseInputLazyPath = class {
-  constructor(parent, value, path9, key) {
+  constructor(parent, value, path6, key) {
     this._cachedPath = [];
     this.parent = parent;
     this.data = value;
-    this._path = path9;
+    this._path = path6;
     this._key = key;
   }
   get path() {
@@ -22996,11 +22996,11 @@ function normalizeObjectSchema(schema) {
   }
   return void 0;
 }
-function getDotPath(path9) {
-  if (path9.length === 0) {
+function getDotPath(path6) {
+  if (path6.length === 0) {
     return "object root";
   }
-  return path9.reduce((acc, seg, index) => {
+  return path6.reduce((acc, seg, index) => {
     if (index === 0) {
       return String(seg);
     }
@@ -28661,10 +28661,10 @@ function N3(Z, $, J, X, V) {
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-var PARAGON_KNOWLEDGE_APP_URI = "ui://paragon-knowledge/app.html";
+var PARADOCS_CONVERT_APP_URI = "ui://paradocs-convert/app.html";
 var APP_UI_META = {
-  ui: { resourceUri: PARAGON_KNOWLEDGE_APP_URI },
-  "ui/resourceUri": PARAGON_KNOWLEDGE_APP_URI
+  ui: { resourceUri: PARADOCS_CONVERT_APP_URI },
+  "ui/resourceUri": PARADOCS_CONVERT_APP_URI
 };
 var HERE = path.dirname(fileURLToPath(import.meta.url));
 var FROM_SRC = HERE.endsWith(`${path.sep}src`) || HERE.endsWith("/src");
@@ -28793,16 +28793,16 @@ function fitStructuredForChat(payload) {
   }
   return out;
 }
-function registerParagonDocsAppResource(server2) {
+function registerAppHtmlResource(server2, name, uri) {
   N3(
     server2,
-    "Paragon Knowledge App",
-    PARAGON_KNOWLEDGE_APP_URI,
+    name,
+    uri,
     { mimeType: p },
     async () => ({
       contents: [
         {
-          uri: PARAGON_KNOWLEDGE_APP_URI,
+          uri,
           mimeType: p,
           text: readAppHtml()
         }
@@ -28810,734 +28810,376 @@ function registerParagonDocsAppResource(server2) {
     })
   );
 }
+function registerParadocsConvertAppResource(server2) {
+  registerAppHtmlResource(server2, "ParaDOCS Convert App", PARADOCS_CONVERT_APP_URI);
+}
 
-// src/config.ts
+// src/convert/engine.ts
+import { spawnSync } from "node:child_process";
+import fs3 from "node:fs";
+import path3 from "node:path";
+
+// src/convert/paths.ts
+import fs2 from "node:fs";
 import path2 from "node:path";
 import { fileURLToPath as fileURLToPath2 } from "node:url";
-var MCP_PACKAGE_ROOT = path2.resolve(path2.dirname(fileURLToPath2(import.meta.url)), "..");
-function requireEnvPath(name) {
-  const fromEnv = process.env[name]?.trim();
+var HERE2 = path2.dirname(fileURLToPath2(import.meta.url));
+function findRepoRoot(start) {
+  let dir = path2.resolve(start);
+  for (let i = 0; i < 6; i++) {
+    if (fs2.existsSync(path2.join(dir, "package.json")) && fs2.existsSync(path2.join(dir, "engine", "convert_cli.py"))) {
+      return dir;
+    }
+    const parent = path2.dirname(dir);
+    if (parent === dir) {
+      break;
+    }
+    dir = parent;
+  }
+  return path2.resolve(start, "..", "..");
+}
+var REPO_ROOT2 = findRepoRoot(HERE2);
+function getRepoRoot() {
+  return REPO_ROOT2;
+}
+function getEngineDir() {
+  return path2.join(REPO_ROOT2, "engine");
+}
+function getProfilesDir() {
+  return path2.join(getEngineDir(), "profiles");
+}
+function getConvertCliPath() {
+  return path2.join(getEngineDir(), "convert_cli.py");
+}
+function getVenvDir() {
+  const fromEnv = process.env.PARADOCS_VENV_DIR?.trim();
   if (fromEnv) {
     return path2.resolve(fromEnv);
   }
+  return path2.join(REPO_ROOT2, ".paradocs-venv");
+}
+function getVenvPython() {
+  const venv = getVenvDir();
+  const win = path2.join(venv, "Scripts", "python.exe");
+  const unix = path2.join(venv, "bin", "python3");
+  if (fs2.existsSync(win)) {
+    return win;
+  }
+  if (fs2.existsSync(unix)) {
+    return unix;
+  }
+  return unix;
+}
+function getDefaultOutputDir() {
+  const fromEnv = process.env.PARADOCS_DEFAULT_OUTPUT_DIR?.trim();
+  return fromEnv ? path2.resolve(fromEnv) : void 0;
+}
+
+// src/convert/engine.ts
+var venvReady = null;
+function resolveSystemPython() {
+  const candidates = ["python3", "python"];
+  for (const bin of candidates) {
+    const probe = spawnSync(bin, ["--version"], { encoding: "utf8" });
+    if (probe.status === 0) {
+      return bin;
+    }
+  }
   throw new Error(
-    `Set ${name} to a local folder path (MCP env, shell, or gitignored .env.local; see examples/local.env.example).`
+    "Python 3 is required for ParaDOCS convert. Install Python 3.10+ or set PARADOCS_VENV_DIR to an existing venv."
   );
 }
-var DOC_GLOBS = {
-  directories: ["user-guide", "admin-guide"],
-  rootFiles: ["README.md", "AGENTS.md", "Paragon_Markdown_Style_Rules.md"]
-};
-var MAX_TEXT_CHARS = 1e5;
-var SEARCH_SNIPPET_CHARS = 280;
-var SEARCH_MAX_HITS = 40;
-function getRepoRoot() {
-  return requireEnvPath("PARAGON_CURSOR_DOCS_ROOT");
-}
-function getGuidesRoot() {
-  return getRepoRoot();
-}
-function getParadocsRepoRoot() {
-  return requireEnvPath("PARAGON_PARADOCS_REPO");
-}
-function getCorpusRoot() {
-  const fromEnv = process.env.PARAGON_DOCS_CORPUS_ROOT?.trim();
-  if (fromEnv && fromEnv.length > 0) {
-    return path2.resolve(fromEnv);
+async function ensureVenv() {
+  const python = getVenvPython();
+  if (fs3.existsSync(python)) {
+    return python;
   }
-  return path2.join(getParadocsRepoRoot(), "corpus");
+  if (!venvReady) {
+    venvReady = (async () => {
+      const systemPython = resolveSystemPython();
+      const venvDir = getVenvDir();
+      fs3.mkdirSync(path3.dirname(venvDir), { recursive: true });
+      const create = spawnSync(systemPython, ["-m", "venv", venvDir], {
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "pipe"]
+      });
+      if (create.status !== 0) {
+        throw new Error(
+          `Failed to create ParaDOCS venv at ${venvDir}: ${create.stderr || create.stdout}`
+        );
+      }
+      const pip = getVenvPython();
+      const req = path3.join(getEngineDir(), "requirements.txt");
+      const install = spawnSync(
+        pip,
+        ["-m", "pip", "install", "--disable-pip-version-check", "-q", "-r", req],
+        { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }
+      );
+      if (install.status !== 0) {
+        throw new Error(
+          `Failed to install ParaDOCS engine dependencies: ${install.stderr || install.stdout}`
+        );
+      }
+    })();
+  }
+  await venvReady;
+  return getVenvPython();
 }
-function defaultTreeCorpora() {
-  const corpusRoot = getCorpusRoot();
-  return [
-    {
-      id: "tech-arch",
-      label: "Technical Architecture library",
-      root: path2.join(corpusRoot, "tech-arch"),
-      kind: "tree"
-    },
-    {
-      id: "abbey-view",
-      label: "Abbey View wiki",
-      root: path2.join(corpusRoot, "abbey-view"),
-      kind: "tree"
-    }
-  ];
+function parseJsonLine(stdout) {
+  const trimmed = stdout.trim();
+  if (!trimmed) {
+    throw new Error("Convert engine returned no output.");
+  }
+  const line = trimmed.split("\n").filter(Boolean).at(-1) ?? trimmed;
+  return JSON.parse(line);
 }
-function parseCorpusDirList(raw) {
-  const out = [];
-  const seen = /* @__PURE__ */ new Set();
-  for (const part of raw.split(";")) {
-    const token = part.trim();
-    if (!token) {
-      continue;
-    }
-    let id;
-    let rootRaw;
-    const eq = token.indexOf("=");
-    if (eq > 0) {
-      id = token.slice(0, eq).trim();
-      rootRaw = token.slice(eq + 1).trim();
-    } else {
-      rootRaw = token;
-      id = path2.basename(path2.resolve(rootRaw));
-    }
-    if (!id || !rootRaw || seen.has(id.toLowerCase())) {
-      continue;
-    }
-    const root = path2.resolve(rootRaw);
-    seen.add(id.toLowerCase());
-    out.push({
-      id,
-      label: id,
-      root,
-      kind: "tree"
+async function runEngine(options) {
+  const python = await ensureVenv();
+  const cli = getConvertCliPath();
+  if (!fs3.existsSync(cli)) {
+    throw new Error(`Bundled convert CLI missing at ${cli}.`);
+  }
+  const args = [cli, "--profiles-dir", getProfilesDir(), ...options.args];
+  const { spawn } = await import("node:child_process");
+  return await new Promise((resolve, reject) => {
+    let stdout = "";
+    let stderr = "";
+    let progressTimer;
+    const child = spawn(python, args, {
+      cwd: getEngineDir(),
+      env: { ...process.env, PYTHONUNBUFFERED: "1" },
+      stdio: ["ignore", "pipe", "pipe"]
     });
-  }
-  return out;
-}
-function getTreeCorpora() {
-  const preferred = process.env.PARAGON_CURSOR_CORPORA?.trim();
-  if (preferred !== void 0) {
-    if (preferred.length === 0) {
-      return [];
+    child.stdout.on("data", (chunk) => {
+      stdout += chunk.toString("utf8");
+    });
+    child.stderr.on("data", (chunk) => {
+      stderr += chunk.toString("utf8");
+    });
+    if (options.progressFile && options.onProgress) {
+      progressTimer = setInterval(() => {
+        try {
+          if (fs3.existsSync(options.progressFile)) {
+            const raw = fs3.readFileSync(options.progressFile, "utf8");
+            options.onProgress(JSON.parse(raw));
+          }
+        } catch {
+        }
+      }, 500);
     }
-    return parseCorpusDirList(preferred);
+    child.on("error", (err) => {
+      if (progressTimer) {
+        clearInterval(progressTimer);
+      }
+      reject(err);
+    });
+    child.on("close", (code) => {
+      if (progressTimer) {
+        clearInterval(progressTimer);
+      }
+      try {
+        const payload = parseJsonLine(stdout);
+        if (code !== 0 && payload.status !== "completed" && payload.status !== "ok") {
+          payload.exitCode = code ?? 1;
+          if (stderr.trim()) {
+            payload.engineStderr = stderr.trim().slice(-2e3);
+          }
+        }
+        resolve(payload);
+      } catch (err) {
+        reject(
+          new Error(
+            `Convert engine failed (exit ${code ?? "?"}): ${stderr.trim() || stdout.trim() || String(err)}`
+          )
+        );
+      }
+    });
+  });
+}
+function resolveOutputPath(inputPath, outputPath) {
+  const input = path3.resolve(inputPath);
+  if (outputPath?.trim()) {
+    return { input, output: path3.resolve(outputPath) };
   }
-  const legacy = process.env.PARAGON_CURSOR_EXTRA_DOCS_DIR?.trim();
-  if (legacy && legacy.length > 0) {
-    return parseCorpusDirList(legacy);
+  const defaultDir = getDefaultOutputDir();
+  if (defaultDir) {
+    return { input, output: path3.join(defaultDir, `${path3.basename(input, path3.extname(input))}.md`) };
   }
-  return defaultTreeCorpora();
+  return { input, output: input.replace(/\.[^.]+$/, ".md") };
 }
-function getCorpora() {
-  return [
-    {
-      id: "guides",
-      label: "Paragon Cursor guides (User Guide, Admin Guide, root docs)",
-      root: getGuidesRoot(),
-      kind: "guides"
-    },
-    ...getTreeCorpora()
-  ];
-}
-function getTreeCorpusRoots() {
-  return getTreeCorpora().map((c) => c.root);
-}
-function corpusRelativePath(absolutePath, corpus) {
-  const rel = path2.relative(corpus.root, absolutePath).split(path2.sep).join("/");
-  return `${corpus.id}/${rel}`;
-}
-function normalizeCorpusPath(relativePath) {
-  const norm = relativePath.replace(/\\/g, "/").replace(/^\/+/, "");
-  if (norm.startsWith("external/")) {
-    return norm.slice("external/".length);
+function resolveFolderOutput(inputDir, outputDir) {
+  const input = path3.resolve(inputDir);
+  if (outputDir?.trim()) {
+    return { inputDir: input, outputDir: path3.resolve(outputDir) };
   }
-  return norm;
+  const defaultDir = getDefaultOutputDir();
+  if (defaultDir) {
+    return { inputDir: input, outputDir: path3.join(defaultDir, path3.basename(input)) };
+  }
+  return { inputDir: input, outputDir: path3.join(input, "markdown") };
+}
+async function convertFile(args) {
+  const { input, output } = resolveOutputPath(args.inputPath, args.outputPath);
+  return runEngine({
+    args: [
+      "convert-file",
+      "--input",
+      input,
+      "--output",
+      output,
+      "--profile",
+      args.profile?.trim() || "default",
+      ...args.overwrite ? ["--overwrite"] : []
+    ]
+  });
+}
+async function convertFolder(args) {
+  const { inputDir, outputDir } = resolveFolderOutput(args.inputDir, args.outputDir);
+  return runEngine({
+    args: [
+      "convert-folder",
+      "--input-dir",
+      inputDir,
+      "--output-dir",
+      outputDir,
+      "--profile",
+      args.profile?.trim() || "default",
+      ...args.overwrite ? ["--overwrite"] : [],
+      ...args.recursive === false ? ["--no-recursive"] : [],
+      ...args.progressFile ? ["--progress-file", args.progressFile] : []
+    ],
+    progressFile: args.progressFile,
+    onProgress: args.onProgress
+  });
+}
+async function listProfilesEngine() {
+  return runEngine({ args: ["list-profiles"] });
+}
+async function getProfileEngine(profile) {
+  return runEngine({
+    args: ["get-profile", "--profile", profile?.trim() || "default"]
+  });
 }
 
-// src/loadEnvLocal.ts
-import fs2 from "node:fs";
-import path3 from "node:path";
-import { fileURLToPath as fileURLToPath3 } from "node:url";
-function loadEnvLocal(packageRoot) {
-  const root = packageRoot ?? path3.resolve(path3.dirname(fileURLToPath3(import.meta.url)), "..");
-  const envPath = path3.join(root, ".env.local");
-  if (!fs2.existsSync(envPath)) {
-    return;
-  }
-  const text = fs2.readFileSync(envPath, "utf8");
-  for (const line of text.split(/\r?\n/)) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith("#")) {
-      continue;
-    }
-    const eq = trimmed.indexOf("=");
-    if (eq <= 0) {
-      continue;
-    }
-    const key = trimmed.slice(0, eq).trim();
-    let value = trimmed.slice(eq + 1).trim();
-    if (value.startsWith('"') && value.endsWith('"') || value.startsWith("'") && value.endsWith("'")) {
-      value = value.slice(1, -1);
-    }
-    if (!key || process.env[key]?.trim()) {
-      continue;
-    }
-    process.env[key] = value;
-  }
-}
-
-// src/corpus.ts
+// src/convert/jobs.ts
 import fs4 from "node:fs";
-import path5 from "node:path";
-
-// src/paths.ts
-import fs3 from "node:fs";
-import path4 from "node:path";
-var PathEscapeError = class extends Error {
-  constructor(message) {
-    super(message);
-    this.name = "PathEscapeError";
-  }
-};
-var NotFoundError = class extends Error {
-  constructor(message) {
-    super(message);
-    this.name = "NotFoundError";
-  }
-};
-function normalize(p2) {
-  return path4.resolve(p2).replace(/[/\\]+$/, "").toLowerCase();
-}
-function assertInsideRoot(absolutePath, root = getRepoRoot()) {
-  const resolved = path4.resolve(absolutePath);
-  const rootNorm = normalize(root);
-  const pathNorm = normalize(resolved);
-  const sep = path4.sep;
-  const inside = pathNorm === rootNorm || pathNorm.startsWith(rootNorm + sep) || pathNorm.startsWith(rootNorm + "/");
-  if (!inside) {
-    throw new PathEscapeError(`Path escapes allowed root: ${absolutePath}`);
-  }
-  return resolved;
-}
-function resolveRelative(relativePath, root = getRepoRoot()) {
-  const cleaned = relativePath.replace(/^[/\\]+/, "");
-  return assertInsideRoot(path4.join(root, cleaned), root);
-}
-function toRelative(absolutePath, root = getRepoRoot()) {
-  const abs = assertInsideRoot(absolutePath, root);
-  return path4.relative(root, abs).split(path4.sep).join("/");
-}
-function ensureReadableFile(absolutePath) {
-  let st;
-  try {
-    st = fs3.statSync(absolutePath);
-  } catch {
-    throw new NotFoundError(`File not found: ${absolutePath}`);
-  }
-  if (!st.isFile()) {
-    throw new NotFoundError(`Not a file: ${absolutePath}`);
-  }
-}
-
-// src/corpus.ts
-function guidesAreaFor(relativePath) {
-  if (relativePath.startsWith("user-guide/")) {
-    return "user-guide";
-  }
-  if (relativePath.startsWith("admin-guide/")) {
-    return "admin-guide";
-  }
-  return "root";
-}
-function titleFromMarkdown(absolutePath, fallback) {
-  try {
-    const head = fs4.readFileSync(absolutePath, "utf8").slice(0, 2e3);
-    const m2 = head.match(/^#\s+(.+)$/m);
-    if (m2?.[1]) {
-      return m2[1].trim();
-    }
-  } catch {
-  }
-  return fallback;
-}
-function walkGuidesMarkdown(dir, root, out) {
-  let entries;
-  try {
-    entries = fs4.readdirSync(dir, { withFileTypes: true });
-  } catch {
-    return;
-  }
-  for (const entry of entries) {
-    if (entry.name.startsWith(".")) {
-      continue;
-    }
-    const full = path5.join(dir, entry.name);
-    if (entry.isDirectory()) {
-      walkGuidesMarkdown(full, root, out);
-      continue;
-    }
-    if (!entry.isFile() || !entry.name.toLowerCase().endsWith(".md")) {
-      continue;
-    }
-    const st = fs4.statSync(full);
-    const relativePath = toRelative(full, root);
-    out.push({
-      relativePath,
-      absolutePath: full,
-      title: titleFromMarkdown(full, entry.name),
-      area: guidesAreaFor(relativePath),
-      corpus: "guides",
-      sizeBytes: st.size,
-      modifiedAt: st.mtime.toISOString()
-    });
-  }
-}
-function pushTreeDocFile(out, seen, absolutePath, corpus) {
-  if (!fs4.existsSync(absolutePath) || !fs4.statSync(absolutePath).isFile()) {
-    return;
-  }
-  if (!absolutePath.toLowerCase().endsWith(".md")) {
-    return;
-  }
-  const base = path5.basename(absolutePath);
-  if (base.startsWith("_")) {
-    return;
-  }
-  const relativePath = corpusRelativePath(absolutePath, corpus);
-  const key = relativePath.toLowerCase();
-  if (seen.has(key)) {
-    return;
-  }
-  const st = fs4.statSync(absolutePath);
-  out.push({
-    relativePath,
-    absolutePath,
-    title: titleFromMarkdown(absolutePath, base),
-    area: corpus.id,
-    corpus: corpus.id,
-    sizeBytes: st.size,
-    modifiedAt: st.mtime.toISOString()
-  });
-  seen.add(key);
-}
-var TREE_CORPUS_SKIP_DIRS = /* @__PURE__ */ new Set([
-  "node_modules",
-  "vendor",
-  "site",
-  "public",
-  ".venv",
-  "venv",
-  "dist",
-  "build",
-  "coverage"
-]);
-function walkTreeCorpus(dir, corpus, out, seen) {
-  let entries;
-  try {
-    entries = fs4.readdirSync(dir, { withFileTypes: true });
-  } catch {
-    return;
-  }
-  for (const entry of entries) {
-    if (entry.name.startsWith(".") || entry.name.startsWith("_")) {
-      continue;
-    }
-    const full = path5.join(dir, entry.name);
-    if (entry.isDirectory()) {
-      if (TREE_CORPUS_SKIP_DIRS.has(entry.name.toLowerCase())) {
-        continue;
-      }
-      walkTreeCorpus(full, corpus, out, seen);
-      continue;
-    }
-    if (!entry.isFile() || !entry.name.toLowerCase().endsWith(".md")) {
-      continue;
-    }
-    pushTreeDocFile(out, seen, full, corpus);
-  }
-}
-function loadGuidesCorpus(out) {
-  const root = getGuidesRoot();
-  assertInsideRoot(root, root);
-  if (!fs4.existsSync(root)) {
-    throw new Error(`Guides corpus root does not exist: ${root}`);
-  }
-  for (const dirName of DOC_GLOBS.directories) {
-    const dir = path5.join(root, dirName);
-    if (fs4.existsSync(dir)) {
-      walkGuidesMarkdown(dir, root, out);
-    }
-  }
-  for (const fileName of DOC_GLOBS.rootFiles) {
-    const full = path5.join(root, fileName);
-    if (!fs4.existsSync(full) || !fs4.statSync(full).isFile()) {
-      continue;
-    }
-    const st = fs4.statSync(full);
-    const relativePath = toRelative(full, root);
-    out.push({
-      relativePath,
-      absolutePath: full,
-      title: titleFromMarkdown(full, fileName),
-      area: "root",
-      corpus: "guides",
-      sizeBytes: st.size,
-      modifiedAt: st.mtime.toISOString()
-    });
-  }
-}
-function matchesFilter(doc, filter) {
-  if (filter === "all") {
-    return true;
-  }
-  if (filter === "guides") {
-    return doc.corpus === "guides";
-  }
-  if (filter === "user-guide" || filter === "admin-guide" || filter === "root") {
-    return doc.area === filter;
-  }
-  return doc.corpus === filter || doc.area === filter;
-}
-function listDocs(options) {
-  const out = [];
-  loadGuidesCorpus(out);
-  const seen = new Set(out.map((d2) => d2.relativePath.toLowerCase()));
-  for (const corpus of getCorpora()) {
-    if (corpus.kind !== "tree") {
-      continue;
-    }
-    if (!fs4.existsSync(corpus.root) || !fs4.statSync(corpus.root).isDirectory()) {
-      continue;
-    }
-    walkTreeCorpus(corpus.root, corpus, out, seen);
-  }
-  const filter = options?.corpus ?? options?.area ?? "all";
-  const filtered = out.filter((d2) => matchesFilter(d2, filter));
-  filtered.sort((a, b) => a.relativePath.localeCompare(b.relativePath));
-  return filtered;
-}
-function listCorpora() {
-  const docs = listDocs({ area: "all" });
-  const byCorpus = /* @__PURE__ */ new Map();
-  for (const doc of docs) {
-    const list = byCorpus.get(doc.corpus) ?? [];
-    list.push(doc);
-    byCorpus.set(doc.corpus, list);
-  }
-  const corpora = getCorpora().map((c) => {
-    const present = fs4.existsSync(c.root) && (c.kind === "guides" || fs4.statSync(c.root).isDirectory());
-    const entries = byCorpus.get(c.id) ?? [];
-    const summary = {
-      id: c.id,
-      label: c.label,
-      root: c.root,
-      kind: c.kind,
-      present,
-      docCount: entries.length
-    };
-    if (c.kind === "guides") {
-      summary.areas = {
-        "user-guide": entries.filter((d2) => d2.area === "user-guide").length,
-        "admin-guide": entries.filter((d2) => d2.area === "admin-guide").length,
-        root: entries.filter((d2) => d2.area === "root").length
-      };
-    }
-    return summary;
-  });
-  return {
-    corpora,
-    totalDocs: docs.length
-  };
-}
-function findDocEntry(relativePath) {
-  const norm = normalizeCorpusPath(relativePath);
-  return listDocs().find((d2) => d2.relativePath.replace(/\\/g, "/") === norm);
-}
-function readDocText(absolutePath) {
-  return fs4.readFileSync(absolutePath, "utf8");
-}
-
-// src/diagramOcr.ts
-import fs5 from "node:fs";
-import path6 from "node:path";
-var MEDIA_EXT_RE = /\.(?:png|jpe?g|gif|bmp|tif{1,2}|emf|wmf|svg)$/i;
-var DIAGRAM_RELEVANT_RE = /\b(diagram|figure|architecture|topo(?:logy)?|network\s+(?:diagram|drawing|map)|schematic|flow\s*charts?|flowchart|drawing|illustration|visio|embedded\s+images?|ocr)\b/i;
-function basenameKey(name) {
-  return path6.basename(name).toLowerCase().replace(/\\/g, "/");
-}
-function listAssetImages(absolutePath) {
-  const dir = absolutePath.replace(/\.md$/i, ".assets");
-  if (!fs5.existsSync(dir) || !fs5.statSync(dir).isDirectory()) {
-    return [];
-  }
-  try {
-    return fs5.readdirSync(dir).filter((name) => MEDIA_EXT_RE.test(name)).map((name) => `${path6.basename(dir)}/${name}`);
-  } catch {
-    return [];
-  }
-}
-function mediaPlaceholdersFromText(text) {
-  const found = /* @__PURE__ */ new Set();
-  for (const m2 of text.matchAll(
-    /media\/([^\s"'<>\]]+?\.(?:png|jpe?g|gif|bmp|tif{1,2}|emf|wmf|svg))/gi
-  )) {
-    if (m2[1]) {
-      found.add(m2[1].replace(/\\/g, "/"));
-    }
-  }
-  return [...found];
-}
-function ocrBlocksFromText(text) {
-  const idx = text.indexOf("## Extracted diagram text");
-  if (idx < 0) {
-    return [];
-  }
-  const section = text.slice(idx);
-  const blocks = [];
-  for (const m2 of section.matchAll(/^###\s+`([^`]+)`/gm)) {
-    if (m2[1]) {
-      blocks.push(m2[1].replace(/\\/g, "/"));
-    }
-  }
-  const unreadIdx = section.search(/^###\s+Unreadable or empty OCR\s*$/im);
-  if (unreadIdx >= 0) {
-    const unreadPart = section.slice(unreadIdx);
-    for (const m2 of unreadPart.matchAll(/^- `([^`]+)`/gm)) {
-      if (m2[1] && !blocks.includes(m2[1])) {
-      }
-    }
-  }
-  return blocks;
-}
-function explicitUnreadFromText(text) {
-  const idx = text.indexOf("## Extracted diagram text");
-  if (idx < 0) {
-    return [];
-  }
-  const section = text.slice(idx);
-  const unreadIdx = section.search(/^###\s+Unreadable or empty OCR\s*$/im);
-  if (unreadIdx < 0) {
-    return [];
-  }
-  const unreadPart = section.slice(unreadIdx);
-  const nextHeading = unreadPart.slice(1).search(/^###\s+/m);
-  const chunk = nextHeading >= 0 ? unreadPart.slice(0, nextHeading + 1) : unreadPart;
-  const out = [];
-  for (const m2 of chunk.matchAll(/^- `([^`]+)`/gm)) {
-    if (m2[1]) {
-      out.push(m2[1].replace(/\\/g, "/"));
-    }
-  }
-  return out;
-}
-function frontMatterUnreadCount(text) {
-  const head = text.slice(0, 800);
-  const m2 = head.match(/^ocr_unread:\s*(\d+)\s*$/m);
-  if (!m2?.[1]) {
-    return null;
-  }
-  const n = Number(m2[1]);
-  return Number.isFinite(n) ? n : null;
-}
-function analyzeDiagramOcr(absolutePath, text) {
-  const head = text.slice(0, 1200);
-  const ocrPass = /ocr_pass:\s*true/i.test(head) || text.includes("## Extracted diagram text");
-  const mediaPlaceholders = mediaPlaceholdersFromText(text);
-  const assetImages = listAssetImages(absolutePath);
-  const ocrBlocks = ocrBlocksFromText(text);
-  const explicitUnread = explicitUnreadFromText(text);
-  const ocrKeys = new Set(ocrBlocks.map(basenameKey));
-  const unread = new Set(explicitUnread);
-  for (const media of mediaPlaceholders) {
-    const base = basenameKey(media);
-    const ext = path6.extname(base).toLowerCase();
-    if (ext === ".emf" || ext === ".wmf") {
-      unread.add(media);
-      continue;
-    }
-    if (!ocrKeys.has(base)) {
-      unread.add(media);
-    }
-  }
-  for (const asset of assetImages) {
-    const base = basenameKey(asset);
-    if (!ocrKeys.has(base)) {
-      unread.add(asset);
-    }
-  }
-  const fmUnread = frontMatterUnreadCount(text);
-  let unreadList = [...unread];
-  if (unreadList.length === 0 && fmUnread && fmUnread > 0) {
-    unreadList = [`(${fmUnread} embedded image(s) with no usable OCR text)`];
-  }
-  if (unreadList.length === 0 && ocrPass && mediaPlaceholders.length + assetImages.length >= 2 && ocrBlocks.length <= 1) {
-    const implied = mediaPlaceholders.length + assetImages.length - ocrBlocks.length;
-    if (implied > 0) {
-      unreadList = [
-        `(about ${implied} embedded image(s) with little or no usable OCR text)`
-      ];
-    }
-  }
-  const unreadCount = fmUnread && fmUnread > unreadList.length ? fmUnread : unreadList.length;
-  let notice = null;
-  if (unreadCount > 0) {
-    const sample = unreadList.slice(0, 8).join(", ");
-    const more = unreadList.length > 8 ? ` (+${unreadList.length - 8} more)` : "";
-    notice = `NOTICE: This document has ${unreadCount} embedded diagram(s)/image(s) that could not be read with OCR (empty Tesseract output, skipped EMF/WMF, or missing extract). Visual content may be missing from search and get_doc answers; treat architecture/network claims as incomplete unless confirmed in prose.` + (sample ? ` Unreadable: ${sample}${more}.` : "");
-  }
-  return {
-    ocrPass,
-    mediaPlaceholders,
-    assetImages,
-    ocrBlocks,
-    unread: unreadList,
-    unreadCount,
-    notice
-  };
-}
-function querySuggestsDiagramNeed(query) {
-  return DIAGRAM_RELEVANT_RE.test(query.trim());
-}
-function shouldSurfaceUnreadDiagrams(query, status) {
-  if (!status.notice || status.unreadCount <= 0) {
-    return false;
-  }
-  if (query === null) {
-    return true;
-  }
-  if (querySuggestsDiagramNeed(query)) {
-    return true;
-  }
-  return status.unreadCount >= 2 && status.ocrBlocks.length <= 1;
-}
-function diagramOcrPayload(status, opts) {
-  if (status.unreadCount <= 0) {
-    return null;
-  }
-  const includeNotice = opts?.includeNotice !== false;
-  return {
-    unreadCount: status.unreadCount,
-    unreadSample: status.unread.slice(0, 12),
-    ocrBlockCount: status.ocrBlocks.length,
-    mediaPlaceholderCount: status.mediaPlaceholders.length,
-    ...includeNotice && status.notice ? { notice: status.notice } : {}
-  };
-}
-
-// src/extracts.ts
-function findDoc(relativePath) {
-  const hit = findDocEntry(relativePath);
-  if (!hit) {
-    throw new NotFoundError(`Doc not found: ${relativePath}`);
-  }
-  return hit;
-}
-function truncate(text) {
-  if (text.length <= MAX_TEXT_CHARS) {
-    return { text, truncated: false };
-  }
-  return {
-    text: text.slice(0, MAX_TEXT_CHARS) + `
-
-[truncated at ${MAX_TEXT_CHARS} characters]`,
-    truncated: true
-  };
-}
-function getGuidePage(relativePath) {
-  const doc = findDoc(relativePath);
-  const raw = readDocText(doc.absolutePath);
-  const diagramStatus = analyzeDiagramOcr(doc.absolutePath, raw);
-  const surface = shouldSurfaceUnreadDiagrams(null, diagramStatus);
-  const { text, truncated } = truncate(raw);
-  const textWithNotice = surface && diagramStatus.notice ? `${diagramStatus.notice}
-
-${text}` : text;
-  return {
-    relativePath: doc.relativePath,
-    absolutePath: doc.absolutePath,
-    title: doc.title,
-    corpus: doc.corpus,
-    area: doc.area,
-    truncated,
-    fullLength: raw.length,
-    text: textWithNotice,
-    ...surface ? { diagramOcr: diagramOcrPayload(diagramStatus, { includeNotice: true }) } : {}
-  };
-}
-function sectionByHeading(text, headingPattern) {
-  const lines = text.split(/\r?\n/);
-  let start = -1;
-  for (let i = 0; i < lines.length; i++) {
-    if (headingPattern.test(lines[i] ?? "")) {
-      start = i;
-      break;
-    }
-  }
-  if (start < 0) {
-    return null;
-  }
-  let end = lines.length;
-  for (let i = start + 1; i < lines.length; i++) {
-    if (/^##\s+/.test(lines[i] ?? "")) {
-      end = i;
-      break;
-    }
-  }
-  return lines.slice(start, end).join("\n").trim();
-}
-function getApprovedPluginsAndMcps() {
-  const doc = findDoc("user-guide/06-Approved-plugins-and-MCPs.md");
-  const text = readDocText(doc.absolutePath);
-  return {
-    relativePath: doc.relativePath,
-    title: doc.title,
-    text: truncate(text).text,
-    note: "Full User Guide page 06 (approved plugins and MCPs)."
-  };
-}
-function getApprovedModels() {
-  const doc = findDoc("user-guide/05-Approved-models.md");
-  const text = readDocText(doc.absolutePath);
-  return {
-    relativePath: doc.relativePath,
-    title: doc.title,
-    text: truncate(text).text
-  };
-}
-function getNacSummary() {
-  const doc = findDoc("user-guide/08-Network-Access-Controls.md");
-  const text = readDocText(doc.absolutePath);
-  return {
-    relativePath: doc.relativePath,
-    title: doc.title,
-    text: truncate(text).text,
-    note: "User-facing NAC summary. Admin Guide \xA73.2 is authoritative for the full pattern table."
-  };
-}
-function getChangeFormInfo() {
-  const doc = findDoc("user-guide/04-Cursor-Change-Form.md");
-  const text = readDocText(doc.absolutePath);
-  return {
-    relativePath: doc.relativePath,
-    title: doc.title,
-    text: truncate(text).text
-  };
-}
-function getGovernanceAi02() {
-  const ug = listDocs().find((d2) => d2.relativePath === "user-guide/AI02-Business-Use-of-Artificial-Intelligence.md");
-  const ag = listDocs().find((d2) => d2.relativePath === "admin-guide/AI02-Business-Use-of-Artificial-Intelligence.md");
-  const doc = ug ?? ag;
-  if (!doc) {
-    throw new NotFoundError("AI02 document not found under user-guide/ or admin-guide/");
-  }
-  const text = readDocText(doc.absolutePath);
-  return {
-    relativePath: doc.relativePath,
-    title: doc.title,
-    text: truncate(text).text,
-    alsoAt: ug && ag && ug.relativePath !== ag.relativePath ? ag.relativePath : void 0
-  };
-}
-function getAdminOverview() {
-  const doc = findDoc("admin-guide/CursorAI-Administration.md");
-  const text = readDocText(doc.absolutePath);
-  const intro = sectionByHeading(text, /^#\s+/) ?? text.slice(0, 8e3);
-  const { text: body, truncated } = truncate(intro.length < 12e3 ? text.slice(0, 12e3) : intro);
-  return {
-    relativePath: doc.relativePath,
-    title: doc.title,
-    truncated: truncated || text.length > body.length,
-    text: body,
-    note: "Admin Guide is large; use get_doc with a path or search_docs for specific sections."
-  };
-}
-
-// src/paradocsSettings.ts
-import fs6 from "node:fs";
 import os from "node:os";
-import path7 from "node:path";
+import path4 from "node:path";
+import { randomUUID } from "node:crypto";
+var jobs = /* @__PURE__ */ new Map();
+function nowIso() {
+  return (/* @__PURE__ */ new Date()).toISOString();
+}
+function jobsDir() {
+  return path4.join(getRepoRoot(), ".paradocs-jobs");
+}
+function persistJob(job) {
+  const dir = jobsDir();
+  fs4.mkdirSync(dir, { recursive: true });
+  fs4.writeFileSync(path4.join(dir, `${job.id}.json`), JSON.stringify(job, null, 2), "utf8");
+}
+function createJob(partial2) {
+  const job = {
+    id: randomUUID(),
+    status: "queued",
+    createdAt: nowIso(),
+    updatedAt: nowIso(),
+    ...partial2
+  };
+  jobs.set(job.id, job);
+  persistJob(job);
+  return job;
+}
+function updateJob(id, patch) {
+  const existing = jobs.get(id) ?? loadJob(id);
+  if (!existing) {
+    return void 0;
+  }
+  const next = { ...existing, ...patch, updatedAt: nowIso() };
+  jobs.set(id, next);
+  persistJob(next);
+  return next;
+}
+function loadJob(id) {
+  if (jobs.has(id)) {
+    return jobs.get(id);
+  }
+  const file2 = path4.join(jobsDir(), `${id}.json`);
+  if (!fs4.existsSync(file2)) {
+    return void 0;
+  }
+  try {
+    const job = JSON.parse(fs4.readFileSync(file2, "utf8"));
+    jobs.set(id, job);
+    return job;
+  } catch {
+    return void 0;
+  }
+}
+function getJobStatusPayload(job) {
+  if (!job) {
+    return {
+      view: "job_status",
+      status: "idle",
+      jobId: null,
+      message: "No convert job found. Start one with convert_file or convert_folder."
+    };
+  }
+  const progress = job.progress;
+  const counts = progress?.counts ?? job.result?.counts;
+  const total = progress?.total ?? (typeof job.result?.total === "number" ? job.result.total : void 0);
+  const index = progress?.index;
+  let message = job.message;
+  if (job.status === "running" && total && index) {
+    message = `Converting ${index}/${total} files\u2026`;
+  } else if (job.status === "completed") {
+    message = job.message ?? "Conversion finished.";
+  } else if (job.status === "failed") {
+    message = job.error ?? job.message ?? "Conversion failed.";
+  }
+  return {
+    view: "job_status",
+    status: job.status,
+    jobId: job.id,
+    kind: job.kind,
+    profile: job.profile,
+    inputPath: job.inputPath,
+    outputPath: job.outputPath,
+    inputDir: job.inputDir,
+    outputDir: job.outputDir,
+    message,
+    progress: progress ? {
+      index: progress.index,
+      total: progress.total,
+      counts: progress.counts,
+      lastSource: progress.last?.source,
+      lastStatus: progress.last?.status
+    } : void 0,
+    counts,
+    result: job.result,
+    updatedAt: job.updatedAt
+  };
+}
+function progressFileForJob(jobId) {
+  return path4.join(os.tmpdir(), `paradocs-convert-${jobId}.json`);
+}
+async function runJob(jobId, runner, onSuccess) {
+  updateJob(jobId, { status: "running", message: "Starting conversion\u2026" });
+  try {
+    const result = await runner();
+    updateJob(jobId, { status: "completed", ...onSuccess(result), message: "Conversion finished." });
+  } catch (err) {
+    updateJob(jobId, {
+      status: "failed",
+      error: err instanceof Error ? err.message : String(err),
+      message: "Conversion failed."
+    });
+  }
+}
+
+// src/convert/profiles.ts
+import fs5 from "node:fs";
+import path5 from "node:path";
 var HIGHLIGHT_KEYS = [
   "pdf_header_footer_mode",
   "docx_header_footer_mode",
@@ -29551,44 +29193,6 @@ var HIGHLIGHT_KEYS = [
   "vale_lint_after_rip",
   "ado_attach_work_item_images"
 ];
-function readJsonObject(filePath) {
-  if (!fs6.existsSync(filePath)) {
-    return void 0;
-  }
-  try {
-    const raw = JSON.parse(fs6.readFileSync(filePath, "utf8"));
-    if (raw && typeof raw === "object" && !Array.isArray(raw)) {
-      return raw;
-    }
-  } catch {
-  }
-  return void 0;
-}
-function normalizeProfileName(name) {
-  return name.trim().replace(/\s+/g, " ");
-}
-function resolveParadocsDataDir() {
-  const fromEnv = process.env.PARAGON_PARADOCS_DATA_DIR?.trim();
-  if (fromEnv) {
-    return path7.resolve(fromEnv);
-  }
-  const fromRepo = process.env.PARAGON_PARADOCS_REPO?.trim();
-  if (!fromRepo) {
-    throw new Error(
-      "Set PARAGON_PARADOCS_REPO or PARAGON_PARADOCS_DATA_DIR (MCP env, shell, or gitignored .env.local; see examples/local.env.example)."
-    );
-  }
-  const repo = path7.resolve(fromRepo);
-  return path7.join(repo, `ParaDOCS_Data_${os.userInfo().username}`);
-}
-function getParadocsSettingsPaths(dataDir = resolveParadocsDataDir()) {
-  return {
-    dataDir,
-    settingsFile: path7.join(dataDir, "settings.json"),
-    profilesFile: path7.join(dataDir, "settings_profiles.json"),
-    prefsFile: path7.join(dataDir, "settings_profile_prefs.json")
-  };
-}
 function highlightsFrom(settings) {
   const out = {};
   for (const key of HIGHLIGHT_KEYS) {
@@ -29598,285 +29202,44 @@ function highlightsFrom(settings) {
   }
   return out;
 }
-function readProfilesMap(profilesFile) {
-  const raw = readJsonObject(profilesFile);
-  if (!raw) {
-    return {};
-  }
-  const out = {};
-  for (const [name, payload] of Object.entries(raw)) {
-    if (typeof name !== "string" || !name.trim()) {
-      continue;
-    }
-    if (payload && typeof payload === "object" && !Array.isArray(payload)) {
-      out[normalizeProfileName(name)] = payload;
-    }
-  }
-  return out;
-}
-function readDefaultProfileName(prefsFile, profileNames) {
-  const prefs = readJsonObject(prefsFile);
-  const raw = prefs?.default_profile_name;
-  if (typeof raw !== "string" || !raw.trim()) {
-    return "";
-  }
-  const want = normalizeProfileName(raw).toLowerCase();
-  const hit = profileNames.find((n) => n.toLowerCase() === want);
-  return hit ?? "";
-}
-function listSettingsProfiles() {
-  const paths = getParadocsSettingsPaths();
-  const present = fs6.existsSync(paths.dataDir);
-  const profilesMap = readProfilesMap(paths.profilesFile);
-  const names = Object.keys(profilesMap).sort(
-    (a, b) => a.localeCompare(b, void 0, { sensitivity: "base" })
-  );
-  const defaultProfile = readDefaultProfileName(paths.prefsFile, names);
-  const profiles = names.map((name) => ({
-    name,
-    isDefault: defaultProfile.toLowerCase() === name.toLowerCase(),
-    keyCount: Object.keys(profilesMap[name] ?? {}).length,
-    highlights: highlightsFrom(profilesMap[name] ?? {})
-  }));
-  return {
-    dataDir: paths.dataDir,
-    paths,
-    present,
-    defaultProfile,
-    activeSettingsPresent: fs6.existsSync(paths.settingsFile),
-    profiles
-  };
-}
-function getSettingsProfile(profile) {
-  const paths = getParadocsSettingsPaths();
-  if (!fs6.existsSync(paths.dataDir)) {
-    throw new Error(
-      `ParaDOCS data directory not found: ${paths.dataDir}. Set PARAGON_PARADOCS_DATA_DIR or PARAGON_PARADOCS_REPO.`
-    );
-  }
-  const profilesMap = readProfilesMap(paths.profilesFile);
-  const names = Object.keys(profilesMap);
-  const defaultProfile = readDefaultProfileName(paths.prefsFile, names);
-  const want = normalizeProfileName(profile ?? "active");
-  if (!want || want.toLowerCase() === "active") {
-    const settings = readJsonObject(paths.settingsFile);
-    if (!settings) {
-      throw new Error(`Active settings not found: ${paths.settingsFile}`);
+async function listBundledProfiles() {
+  const profilesDir = getProfilesDir();
+  const engine = await listProfilesEngine();
+  const rawProfiles = Array.isArray(engine.profiles) ? engine.profiles : [];
+  const profiles = rawProfiles.map((item) => {
+    const row = item;
+    const name = String(row.name ?? "");
+    const profilePath = String(row.path ?? path5.join(profilesDir, `${name}.json`));
+    let settings = {};
+    if (fs5.existsSync(profilePath)) {
+      try {
+        settings = JSON.parse(fs5.readFileSync(profilePath, "utf8"));
+      } catch {
+        settings = {};
+      }
     }
     return {
-      source: "active",
-      name: "active",
-      dataDir: paths.dataDir,
-      path: paths.settingsFile,
-      defaultProfile,
-      settings,
+      name,
+      path: profilePath,
+      keyCount: typeof row.keyCount === "number" ? row.keyCount : Object.keys(settings).length,
+      isDefault: Boolean(row.isDefault) || name.toLowerCase() === "default",
       highlights: highlightsFrom(settings)
     };
-  }
-  const canonical = names.find((n) => n.toLowerCase() === want.toLowerCase()) ?? "";
-  if (!canonical) {
-    const available = names.length ? names.join(", ") : "(none)";
-    throw new Error(
-      `Settings profile not found: "${want}". Available: ${available}`
-    );
-  }
+  });
+  return { profilesDir, profiles };
+}
+async function getBundledProfile(profile) {
+  const data = await getProfileEngine(profile);
+  const settings = data.settings ?? {};
   return {
-    source: "profile",
-    name: canonical,
-    dataDir: paths.dataDir,
-    path: paths.profilesFile,
-    defaultProfile,
-    settings: profilesMap[canonical] ?? {},
-    highlights: highlightsFrom(profilesMap[canonical] ?? {})
+    name: String(data.name ?? profile ?? "default"),
+    path: String(data.path ?? ""),
+    settings,
+    highlights: highlightsFrom(settings)
   };
 }
 
-// src/unavailable.ts
-import fs7 from "node:fs";
-import path8 from "node:path";
-var REASON_LABEL = {
-  sharepoint_online_only: "the SharePoint/OneDrive file was online-only (not downloaded locally) at conversion time",
-  legacy_doc_skipped: "legacy .doc conversion is deferred for this test MCP (Word COM dialogs)",
-  convert_failed: "conversion failed"
-};
-function unavailablePaths() {
-  return getTreeCorpusRoots().map((dir) => path8.join(dir, "_unavailable.json"));
-}
-function loadUnavailableDocs() {
-  const out = [];
-  const seen = /* @__PURE__ */ new Set();
-  for (const file2 of unavailablePaths()) {
-    if (!fs7.existsSync(file2)) {
-      continue;
-    }
-    try {
-      const raw = JSON.parse(fs7.readFileSync(file2, "utf8"));
-      if (!Array.isArray(raw.docs)) {
-        continue;
-      }
-      for (const doc of raw.docs) {
-        const key = `${doc.title}\0${doc.source_file}\0${doc.reason}`.toLowerCase();
-        if (seen.has(key)) {
-          continue;
-        }
-        seen.add(key);
-        out.push(doc);
-      }
-    } catch {
-    }
-  }
-  return out;
-}
-function titleMatchesQuery(title, query) {
-  const t = title.toLowerCase();
-  const q = query.trim().toLowerCase();
-  if (!q || q.length < 3) {
-    return false;
-  }
-  if (t.includes(q)) {
-    return true;
-  }
-  if (q.length >= 8 && q.includes(t) && t.length >= 8) {
-    return true;
-  }
-  const tokens = t.split(/[^a-z0-9]+/i).map((x) => x.toLowerCase()).filter((x) => x.length >= 4 && !/^\d+$/.test(x));
-  if (tokens.length === 0) {
-    return false;
-  }
-  const hits = tokens.filter((tok) => q.includes(tok));
-  return hits.length >= 2 && hits.join("").length >= 8;
-}
-function unavailableNotice(doc) {
-  const why = REASON_LABEL[doc.reason] ?? doc.reason;
-  return `Not available in this MCP corpus. A Technical Architecture library document titled "${doc.title}" matched your search, but its body was not converted (${why}). Source: ${doc.source_file}. Open it in SharePoint, or ask an admin to download/convert it for the corpus.`;
-}
-
-// src/search.ts
-function snippetAround(text, query) {
-  const lower = text.toLowerCase();
-  const q = query.toLowerCase();
-  const idx = lower.indexOf(q);
-  if (idx < 0) {
-    return text.slice(0, SEARCH_SNIPPET_CHARS).replace(/\s+/g, " ").trim();
-  }
-  const start = Math.max(0, idx - 100);
-  const end = Math.min(text.length, idx + query.length + 180);
-  let snip = text.slice(start, end).replace(/\s+/g, " ").trim();
-  if (start > 0) {
-    snip = "\u2026" + snip;
-  }
-  if (end < text.length) {
-    snip = snip + "\u2026";
-  }
-  if (snip.length > SEARCH_SNIPPET_CHARS) {
-    snip = snip.slice(0, SEARCH_SNIPPET_CHARS) + "\u2026";
-  }
-  return snip;
-}
-function searchDocs(query, options) {
-  const q = query.trim();
-  if (!q) {
-    throw new Error("query must not be empty");
-  }
-  const qLower = q.toLowerCase();
-  const filter = options?.corpus ?? options?.area ?? "all";
-  const docs = listDocs({ corpus: filter });
-  const contentSearch = options?.contentSearch !== false;
-  const hits = [];
-  for (const doc of docs) {
-    if (hits.length >= SEARCH_MAX_HITS) {
-      break;
-    }
-    const pathMatch = doc.relativePath.toLowerCase().includes(qLower);
-    const titleMatch = doc.title.toLowerCase().includes(qLower);
-    let contentMatch = false;
-    let snippet = "";
-    let text = "";
-    if (contentSearch) {
-      text = readDocText(doc.absolutePath);
-      if (text.toLowerCase().includes(qLower)) {
-        contentMatch = true;
-        snippet = snippetAround(text, q);
-      }
-    }
-    if (!pathMatch && !titleMatch && !contentMatch) {
-      continue;
-    }
-    const matchCount = [pathMatch, titleMatch, contentMatch].filter(Boolean).length;
-    let matchIn = "content";
-    if (matchCount > 1) {
-      matchIn = "multiple";
-    } else if (pathMatch) {
-      matchIn = "path";
-    } else if (titleMatch) {
-      matchIn = "title";
-    }
-    if (!contentMatch) {
-      snippet = titleMatch ? `Title: ${doc.title}` : `Path: ${doc.relativePath}`;
-    }
-    const hit = {
-      relativePath: doc.relativePath,
-      title: doc.title,
-      area: doc.area,
-      matchIn,
-      snippet
-    };
-    if (!text) {
-      text = readDocText(doc.absolutePath);
-    }
-    const diagramStatus = analyzeDiagramOcr(doc.absolutePath, text);
-    if (shouldSurfaceUnreadDiagrams(q, diagramStatus)) {
-      const diagram = diagramOcrPayload(diagramStatus, { includeNotice: true });
-      if (diagram) {
-        hit.unreadDiagrams = true;
-        hit.diagramOcr = diagram;
-        if (diagramStatus.notice && !hit.snippet.includes("NOTICE:")) {
-          hit.snippet = `${diagramStatus.notice} ${hit.snippet}`.trim();
-        }
-      }
-    }
-    hits.push(hit);
-  }
-  const includeUnavailable = filter === "all" || filter === "tech-arch" || filter === "external";
-  if (includeUnavailable) {
-    for (const missing of loadUnavailableDocs()) {
-      if (hits.length >= SEARCH_MAX_HITS) {
-        break;
-      }
-      if (!titleMatchesQuery(missing.title, q)) {
-        continue;
-      }
-      const already = hits.some(
-        (h2) => h2.title.toLowerCase() === missing.title.toLowerCase() || h2.relativePath.toLowerCase().includes(missing.title.toLowerCase())
-      );
-      if (already) {
-        continue;
-      }
-      hits.push({
-        relativePath: `unavailable/${missing.source_file}`,
-        title: missing.title,
-        area: "unavailable",
-        matchIn: "unavailable_title",
-        unavailable: true,
-        snippet: unavailableNotice(missing)
-      });
-    }
-  }
-  return { hits, scannedDocs: docs.length };
-}
-function docMetadata(doc) {
-  return {
-    relativePath: doc.relativePath,
-    title: doc.title,
-    corpus: doc.corpus,
-    area: doc.area,
-    sizeBytes: doc.sizeBytes,
-    modifiedAt: doc.modifiedAt
-  };
-}
-
-// src/index.ts
-loadEnvLocal();
+// src/convert/index.ts
 function textResult(payload) {
   const structured = typeof payload === "object" && payload !== null ? { ...payload } : { view: "result", text: String(payload) };
   const ui = fitStructuredForChat(structured);
@@ -29895,54 +29258,78 @@ function errorResult(err) {
     _meta: { ...APP_UI_META }
   };
 }
-var corpusFilterSchema = external_exports.string().optional().describe(
-  "Corpus or guides area filter. Default all. Examples: all, guides, user-guide, admin-guide, root, tech-arch, abbey-view."
-);
 var server = new McpServer({
-  name: "paragon-knowledge",
-  version: "0.3.3"
+  name: "paradocs-convert",
+  version: "0.2.0"
 });
-registerParagonDocsAppResource(server);
+registerParadocsConvertAppResource(server);
 K3(
   server,
-  "list_corpora",
+  "convert_file",
   {
-    title: "List documentation corpora",
-    description: "Summarise which documentation corpora are configured and currently loaded (id, label, root path, doc counts). Use this when asked what docs the MCP has. For individual page paths, use list_docs.",
-    inputSchema: {},
-    _meta: APP_UI_META
-  },
-  async () => {
-    try {
-      return textResult({ view: "result", panelTitle: "Corpora", ...listCorpora() });
-    } catch (err) {
-      return errorResult(err);
-    }
-  }
-);
-K3(
-  server,
-  "list_docs",
-  {
-    title: "List documentation pages",
-    description: "List Markdown pages in the loaded corpus. Optional corpus filter: all, guides, user-guide, admin-guide, root, tech-arch, abbey-view. For a high-level inventory of corpora, prefer list_corpora.",
+    title: "Convert one Word/PDF file to Markdown",
+    description: "Convert a single .docx, .docm, or .pdf file to Markdown using the bundled ParaDOCS text engine. Provide inputPath and optional outputPath (defaults beside the source or PARADOCS_DEFAULT_OUTPUT_DIR). Legacy .doc is skipped. Returns jobId for long runs; small files usually finish inline.",
     inputSchema: {
-      corpus: corpusFilterSchema,
-      area: corpusFilterSchema.describe("Alias of corpus (kept for compatibility).")
+      inputPath: external_exports.string().describe("Absolute or workspace-relative path to the source file"),
+      outputPath: external_exports.string().optional().describe("Destination .md path. Defaults to same basename as input."),
+      profile: external_exports.string().optional().describe("Bundled ripping profile name (default, Main, \u2026). Use list_settings_profiles."),
+      overwrite: external_exports.boolean().optional().describe("Replace an existing output file (default false)."),
+      async: external_exports.boolean().optional().describe("Run in background and poll job_status (default false for single files).")
     },
     _meta: APP_UI_META
   },
-  async ({ corpus, area }) => {
+  async ({ inputPath, outputPath, profile, overwrite, async: runAsync }) => {
     try {
-      const filter = corpus ?? area ?? "all";
-      const docs = listDocs({ corpus: filter });
+      const resolved = resolveOutputPath(inputPath, outputPath);
+      const job = createJob({
+        kind: "file",
+        profile: profile ?? "default",
+        inputPath: resolved.input,
+        outputPath: resolved.output,
+        message: "Queued file conversion."
+      });
+      const execute = async () => {
+        const result2 = await convertFile({
+          inputPath: resolved.input,
+          outputPath: resolved.output,
+          profile,
+          overwrite
+        });
+        return result2;
+      };
+      if (runAsync) {
+        void runJob(job.id, execute, (result2) => ({
+          result: result2,
+          outputPath: String(result2.output ?? resolved.output),
+          message: result2.status === "ok" ? `Wrote ${result2.output}` : result2.status === "skipped" ? `Skipped: ${result2.reason ?? "unknown"}` : `Failed: ${result2.error ?? "unknown"}`
+        }));
+        return textResult({
+          view: "convert_progress",
+          status: "queued",
+          jobId: job.id,
+          profile: profile ?? "default",
+          inputPath: resolved.input,
+          outputPath: resolved.output,
+          message: "File conversion started. Poll job_status for progress."
+        });
+      }
+      const result = await execute();
+      updateJob(job.id, {
+        status: result.status === "failed" ? "failed" : "completed",
+        result,
+        message: result.status === "ok" ? `Wrote ${result.output}` : result.status === "skipped" ? `Skipped: ${result.reason ?? "unknown"}` : `Failed: ${result.error ?? "unknown"}`
+      });
       return textResult({
-        view: "result",
-        panelTitle: "Document list",
-        guidesRoot: getRepoRoot(),
-        corpus: filter,
-        count: docs.length,
-        docs: docs.map(docMetadata)
+        view: "convert_result",
+        status: result.status,
+        jobId: job.id,
+        profile: result.profile ?? profile ?? "default",
+        inputPath: result.source ?? resolved.input,
+        outputPath: result.output ?? resolved.output,
+        chars: result.chars,
+        reason: result.reason,
+        message: result.status === "ok" ? `Converted to ${result.output}` : result.status === "skipped" ? String(result.message ?? result.reason ?? "Skipped") : String(result.error ?? "Conversion failed"),
+        limitations: "Text-only bundled engine: no image extraction, OCR pass, Vale lint, or full paradocs.py rip pipeline."
       });
     } catch (err) {
       return errorResult(err);
@@ -29951,48 +29338,63 @@ K3(
 );
 K3(
   server,
-  "get_doc",
+  "convert_folder",
   {
-    title: "Get a documentation page",
-    description: "Return a documentation page by corpus path (e.g. tech-arch/..., user-guide/...). Large pages return a preview (Overview when present) plus absolutePath so the Paragon Knowledge card can render; read absolutePath for the full Markdown. When the page has embedded diagrams/images that OCR could not read, includes diagramOcr.notice (also prepended to text) so agents can warn that visual content may be missing. Legacy external/<corpus>/... paths are accepted.",
+    title: "Convert a folder of Word/PDF files to Markdown",
+    description: "Batch-convert .docx/.docm/.pdf under inputDir into outputDir preserving relative paths. Uses bundled profiles. Poll job_status for progress on large folders.",
     inputSchema: {
-      relativePath: external_exports.string().describe("Corpus path, e.g. user-guide/....md, tech-arch/....md, abbey-view/....md")
+      inputDir: external_exports.string().describe("Folder containing Word/PDF sources"),
+      outputDir: external_exports.string().optional().describe("Markdown output folder (default: inputDir/markdown or PARADOCS_DEFAULT_OUTPUT_DIR/<basename>)"),
+      profile: external_exports.string().optional().describe("Bundled ripping profile name"),
+      overwrite: external_exports.boolean().optional(),
+      recursive: external_exports.boolean().optional().describe("Include subfolders (default true).")
     },
     _meta: APP_UI_META
   },
-  async ({ relativePath }) => {
+  async ({ inputDir, outputDir, profile, overwrite, recursive }) => {
     try {
-      const page = getGuidePage(relativePath);
-      return textResult({ view: "result", panelTitle: page.title ?? "Document", ...page });
-    } catch (err) {
-      return errorResult(err);
-    }
-  }
-);
-K3(
-  server,
-  "search_docs",
-  {
-    title: "Search documentation",
-    description: "Fast keyword search across all loaded corpora (guides, tech-arch, abbey-view, \u2026). Title matches for Technical Architecture library docs that could not be converted return an unavailable notice (not full body text). When a hit has diagrams OCR could not read and that gap looks relevant to the query (or the OCR gap is large), the hit includes unreadDiagrams / diagramOcr.notice. Hosts that support MCP Apps render a branded Paragon Knowledge result card.",
-    inputSchema: {
-      query: external_exports.string().describe("Keyword or phrase"),
-      corpus: corpusFilterSchema,
-      area: corpusFilterSchema.describe("Alias of corpus (kept for compatibility)."),
-      contentSearch: external_exports.boolean().optional().describe("Search file contents (default true). Set false for path/title only.")
-    },
-    _meta: APP_UI_META
-  },
-  async ({ query, corpus, area, contentSearch }) => {
-    try {
-      const filter = corpus ?? area ?? "all";
-      const result = searchDocs(query, { corpus: filter, contentSearch });
+      const resolved = resolveFolderOutput(inputDir, outputDir);
+      const job = createJob({
+        kind: "folder",
+        profile: profile ?? "default",
+        inputDir: resolved.inputDir,
+        outputDir: resolved.outputDir,
+        message: "Queued folder conversion."
+      });
+      const jobProgressFile = progressFileForJob(job.id);
+      void runJob(
+        job.id,
+        () => convertFolder({
+          inputDir: resolved.inputDir,
+          outputDir: resolved.outputDir,
+          profile,
+          overwrite,
+          recursive,
+          progressFile: jobProgressFile,
+          onProgress: (payload) => {
+            updateJob(job.id, {
+              progress: {
+                index: payload.index,
+                total: payload.total,
+                counts: payload.counts,
+                last: payload.last
+              }
+            });
+          }
+        }),
+        (result) => ({
+          result,
+          message: `Finished batch: ok=${result.counts?.ok ?? 0}`
+        })
+      );
       return textResult({
-        view: "search",
-        guidesRoot: getRepoRoot(),
-        query,
-        corpus: filter,
-        ...result
+        view: "convert_progress",
+        status: "queued",
+        jobId: job.id,
+        profile: profile ?? "default",
+        inputDir: resolved.inputDir,
+        outputDir: resolved.outputDir,
+        message: "Folder conversion started. Poll job_status for progress."
       });
     } catch (err) {
       return errorResult(err);
@@ -30004,128 +29406,16 @@ K3(
   "job_status",
   {
     title: "Convert job status",
-    description: "Return ParaDOCS convert job status for a branded MCP Apps panel. Stub until convert_file / convert_folder land: reports idle when no job store exists. Hosts without MCP Apps still receive JSON text.",
+    description: "Return progress and results for convert_file / convert_folder background jobs.",
     inputSchema: {
-      jobId: external_exports.string().optional().describe("Optional job id when convert tools start writing a job store.")
+      jobId: external_exports.string().describe("Job id returned by convert_file (async) or convert_folder")
     },
     _meta: APP_UI_META
   },
   async ({ jobId }) => {
     try {
-      return textResult({
-        view: "job_status",
-        status: "idle",
-        jobId: jobId ?? null,
-        message: "No convert jobs are running. convert_file / convert_folder are not shipped yet; this panel is ready for job progress when those tools land."
-      });
-    } catch (err) {
-      return errorResult(err);
-    }
-  }
-);
-K3(
-  server,
-  "get_approved_plugins_and_mcps",
-  {
-    title: "Approved plugins and MCPs",
-    description: "Return User Guide page 06: approved Team Marketplace plugins and MCP servers.",
-    inputSchema: {},
-    _meta: APP_UI_META
-  },
-  async () => {
-    try {
-      const page = getApprovedPluginsAndMcps();
-      return textResult({ view: "result", panelTitle: "Approved plugins and MCPs", ...page });
-    } catch (err) {
-      return errorResult(err);
-    }
-  }
-);
-K3(
-  server,
-  "get_approved_models",
-  {
-    title: "Approved models",
-    description: "Return User Guide page 05: approved models.",
-    inputSchema: {},
-    _meta: APP_UI_META
-  },
-  async () => {
-    try {
-      const page = getApprovedModels();
-      return textResult({ view: "result", panelTitle: "Approved models", ...page });
-    } catch (err) {
-      return errorResult(err);
-    }
-  }
-);
-K3(
-  server,
-  "get_nac_summary",
-  {
-    title: "Network Access Controls summary",
-    description: "Return User Guide page 08 (NAC). Points to Admin Guide for the authoritative table.",
-    inputSchema: {},
-    _meta: APP_UI_META
-  },
-  async () => {
-    try {
-      const page = getNacSummary();
-      return textResult({ view: "result", panelTitle: "NAC summary", ...page });
-    } catch (err) {
-      return errorResult(err);
-    }
-  }
-);
-K3(
-  server,
-  "get_change_form_info",
-  {
-    title: "Cursor Change Form",
-    description: "Return User Guide page 04: how to request MCP/plugin/NAC and other changes.",
-    inputSchema: {},
-    _meta: APP_UI_META
-  },
-  async () => {
-    try {
-      const page = getChangeFormInfo();
-      return textResult({ view: "result", panelTitle: "Cursor Change Form", ...page });
-    } catch (err) {
-      return errorResult(err);
-    }
-  }
-);
-K3(
-  server,
-  "get_governance_ai02",
-  {
-    title: "AI02 governance policy",
-    description: "Return AI02 Business Use of Artificial Intelligence (User Guide copy preferred).",
-    inputSchema: {},
-    _meta: APP_UI_META
-  },
-  async () => {
-    try {
-      const page = getGovernanceAi02();
-      return textResult({ view: "result", panelTitle: "AI02 governance", ...page });
-    } catch (err) {
-      return errorResult(err);
-    }
-  }
-);
-K3(
-  server,
-  "get_admin_guide_overview",
-  {
-    title: "Admin Guide overview",
-    description: "Return the start of admin-guide/CursorAI-Administration.md. For deep topics, use search_docs or get_doc.",
-    inputSchema: {},
-    _meta: APP_UI_META
-  },
-  async () => {
-    try {
-      const page = getAdminOverview();
-      return textResult({ view: "result", panelTitle: "Admin Guide overview", ...page });
+      const job = loadJob(jobId);
+      return textResult(getJobStatusPayload(job));
     } catch (err) {
       return errorResult(err);
     }
@@ -30135,17 +29425,18 @@ K3(
   server,
   "list_settings_profiles",
   {
-    title: "List ParaDOCS Settings profiles",
-    description: "List named Settings profiles from the local ParaDOCS data directory (same Profiles menu as the desktop app). Returns profile names, default profile, and highlight toggles for each. Use before convert when choosing a --profile.",
+    title: "List bundled ripping profiles",
+    description: "List ParaDOCS ripping profiles shipped with the plugin (default, Main, \u2026). These override YAML front matter and rip toggles for convert tools.",
     inputSchema: {},
     _meta: APP_UI_META
   },
   async () => {
     try {
+      const data = await listBundledProfiles();
       return textResult({
         view: "result",
-        panelTitle: "Settings profiles",
-        ...listSettingsProfiles()
+        panelTitle: "Bundled ripping profiles",
+        ...data
       });
     } catch (err) {
       return errorResult(err);
@@ -30156,75 +29447,22 @@ K3(
   server,
   "get_settings_profile",
   {
-    title: "Get ParaDOCS Settings profile",
-    description: "Read full ParaDOCS settings. Omit profile (or pass active) for the current settings.json; pass a profile name (e.g. Main, Test) to read that snapshot from settings_profiles.json.",
+    title: "Get bundled ripping profile",
+    description: "Read a bundled ripping profile JSON (settings used by convert_file / convert_folder).",
     inputSchema: {
-      profile: external_exports.string().optional().describe(
-        'Profile name from list_settings_profiles, or "active" / omit for current settings.json'
-      )
+      profile: external_exports.string().optional().describe('Profile name (default, Main, \u2026). Omit for "default".')
     },
     _meta: APP_UI_META
   },
   async ({ profile }) => {
     try {
-      const data = getSettingsProfile(profile);
+      const data = await getBundledProfile(profile);
       return textResult({
         view: "result",
-        panelTitle: `Settings: ${data.name}`,
+        panelTitle: `Profile: ${data.name}`,
         ...data
       });
     } catch (err) {
-      return errorResult(err);
-    }
-  }
-);
-K3(
-  server,
-  "get_doc_metadata",
-  {
-    title: "Get doc metadata",
-    description: "Return title, corpus, area, size, and modified time for one corpus path. Includes diagramOcr when embedded diagrams could not be read with OCR.",
-    inputSchema: {
-      relativePath: external_exports.string()
-    },
-    _meta: APP_UI_META
-  },
-  async ({ relativePath }) => {
-    try {
-      const hit = findDocEntry(relativePath);
-      if (hit) {
-        const text2 = readDocText(hit.absolutePath);
-        const diagramStatus2 = analyzeDiagramOcr(hit.absolutePath, text2);
-        const diagram2 = shouldSurfaceUnreadDiagrams(null, diagramStatus2) && diagramOcrPayload(diagramStatus2, { includeNotice: true });
-        return textResult({
-          view: "result",
-          panelTitle: "Document metadata",
-          guidesRoot: getRepoRoot(),
-          ...docMetadata(hit),
-          absolutePath: hit.absolutePath,
-          ...diagram2 ? { diagramOcr: diagram2 } : {}
-        });
-      }
-      const absolutePath = resolveRelative(relativePath);
-      ensureReadableFile(absolutePath);
-      if (!absolutePath.toLowerCase().endsWith(".md")) {
-        throw new NotFoundError(`Not a Markdown doc in corpus: ${relativePath}`);
-      }
-      const text = readDocText(absolutePath);
-      const diagramStatus = analyzeDiagramOcr(absolutePath, text);
-      const diagram = shouldSurfaceUnreadDiagrams(null, diagramStatus) && diagramOcrPayload(diagramStatus, { includeNotice: true });
-      return textResult({
-        view: "result",
-        panelTitle: "Document metadata",
-        relativePath: toRelative(absolutePath),
-        title: text.match(/^#\s+(.+)$/m)?.[1] ?? relativePath,
-        chars: Math.min(text.length, MAX_TEXT_CHARS),
-        ...diagram ? { diagramOcr: diagram } : {}
-      });
-    } catch (err) {
-      if (err instanceof PathEscapeError || err instanceof NotFoundError) {
-        return errorResult(err);
-      }
       return errorResult(err);
     }
   }

@@ -1,0 +1,18 @@
+{
+  "pdf_header_footer_mode": "strip",
+  "docx_header_footer_mode": "strip",
+  "pdf_edge_detection_enabled": true,
+  "pdf_flag_scanned_content": true,
+  "strip_placeholder_images": true,
+  "dedupe_identical_assets": true,
+  "paragon_markdown_rules_master": true,
+  "paragon_tier1_wrap_body_80": true,
+  "document360_front_matter_enabled": true,
+  "document360_include_title": false,
+  "document360_include_source_file": true,
+  "document360_include_author": true,
+  "document360_include_created": true,
+  "document360_include_last_updated": true,
+  "vale_lint_after_rip": false,
+  "ado_attach_work_item_images": false
+}
