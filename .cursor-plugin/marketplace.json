@@ -6,14 +6,14 @@
   },
   "metadata": {
     "description": "ParaDOCS skills and rules for consistent technical documentation authoring in Cursor Team Marketplace",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   "plugins": [
     {
       "name": "paradocs",
       "source": "./",
       "description": "ParaDOCS skills and rules for consistent technical documentation authoring in Cursor.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "logo": "assets/logo.png",
       "keywords": [
         "paragon",
