@@ -1,6 +1,6 @@
 {
   "name": "paradocs-mcp",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "ParaDOCS convert MCP with bundled Word/PDF engine and MCP Apps chrome.",
   "type": "module",
