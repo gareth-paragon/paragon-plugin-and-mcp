@@ -14,3 +14,5 @@ external/tech-arch/
 external/abbey-view/
 scripts/__pycache__/
 **/*.pyc
+.paradocs-venv/
+.paradocs-jobs/

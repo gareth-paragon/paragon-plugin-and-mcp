@@ -1,0 +1,2 @@
+docx2python>=2.8.0
+pymupdf>=1.24.0

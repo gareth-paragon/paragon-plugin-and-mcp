@@ -11,8 +11,17 @@ import { fileURLToPath } from "node:url";
 /** Shared MCP Apps View for branded Paragon Knowledge result cards. */
 export const PARAGON_KNOWLEDGE_APP_URI = "ui://paragon-knowledge/app.html";
 
+/** ParaDOCS convert MCP Apps View (Team Marketplace default). */
+export const PARADOCS_CONVERT_APP_URI = "ui://paradocs-convert/app.html";
+
 /** Tool / result metadata hosts use to mount the Apps View. */
 export const APP_UI_META = {
+  ui: { resourceUri: PARADOCS_CONVERT_APP_URI },
+  "ui/resourceUri": PARADOCS_CONVERT_APP_URI,
+} as const;
+
+/** Knowledge MCP keeps its own Apps URI when built from src/knowledge. */
+export const KNOWLEDGE_APP_UI_META = {
   ui: { resourceUri: PARAGON_KNOWLEDGE_APP_URI },
   "ui/resourceUri": PARAGON_KNOWLEDGE_APP_URI,
 } as const;
@@ -174,22 +183,34 @@ export function fitStructuredForChat(
   return out;
 }
 
-export function registerParagonDocsAppResource(server: McpServer): void {
+function registerAppHtmlResource(
+  server: McpServer,
+  name: string,
+  uri: string,
+): void {
   registerAppResource(
     server,
-    "Paragon Knowledge App",
-    PARAGON_KNOWLEDGE_APP_URI,
+    name,
+    uri,
     { mimeType: RESOURCE_MIME_TYPE },
     async () => ({
       contents: [
         {
-          uri: PARAGON_KNOWLEDGE_APP_URI,
+          uri,
           mimeType: RESOURCE_MIME_TYPE,
           text: readAppHtml(),
         },
       ],
     }),
   );
+}
+
+export function registerParagonDocsAppResource(server: McpServer): void {
+  registerAppHtmlResource(server, "Paragon Knowledge App", PARAGON_KNOWLEDGE_APP_URI);
+}
+
+export function registerParadocsConvertAppResource(server: McpServer): void {
+  registerAppHtmlResource(server, "ParaDOCS Convert App", PARADOCS_CONVERT_APP_URI);
 }
 
 export { registerAppTool };

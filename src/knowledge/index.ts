@@ -3,17 +3,17 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 import {
-  APP_UI_META,
+  KNOWLEDGE_APP_UI_META,
   fitStructuredForChat,
   logoImageContent,
   registerAppTool,
   registerParagonDocsAppResource,
-} from "./appsUi.js";
-import { getRepoRoot, MAX_TEXT_CHARS, type DocArea } from "./config.js";
-import { loadEnvLocal } from "./loadEnvLocal.js";
+} from "../appsUi.js";
+import { getRepoRoot, MAX_TEXT_CHARS, type DocArea } from "../config.js";
+import { loadEnvLocal } from "../loadEnvLocal.js";
 
 loadEnvLocal();
-import { findDocEntry, listCorpora, listDocs, readDocText } from "./corpus.js";
+import { findDocEntry, listCorpora, listDocs, readDocText } from "../corpus.js";
 import {
   getAdminOverview,
   getApprovedModels,
@@ -22,15 +22,15 @@ import {
   getGovernanceAi02,
   getGuidePage,
   getNacSummary,
-} from "./extracts.js";
-import { NotFoundError, PathEscapeError, resolveRelative, toRelative, ensureReadableFile } from "./paths.js";
-import { getSettingsProfile, listSettingsProfiles } from "./paradocsSettings.js";
+} from "../extracts.js";
+import { NotFoundError, PathEscapeError, resolveRelative, toRelative, ensureReadableFile } from "../paths.js";
+import { getSettingsProfile, listSettingsProfiles } from "../paradocsSettings.js";
 import {
   analyzeDiagramOcr,
   diagramOcrPayload,
   shouldSurfaceUnreadDiagrams,
-} from "./diagramOcr.js";
-import { docMetadata, searchDocs } from "./search.js";
+} from "../diagramOcr.js";
+import { docMetadata, searchDocs } from "../search.js";
 
 function textResult(payload: unknown) {
   const structured =
@@ -44,7 +44,7 @@ function textResult(payload: unknown) {
   return {
     content: [logoImageContent(), { type: "text" as const, text }],
     structuredContent: ui,
-    _meta: { ...APP_UI_META },
+    _meta: { ...KNOWLEDGE_APP_UI_META },
   };
 }
 
@@ -53,7 +53,7 @@ function errorResult(err: unknown) {
   return {
     content: [logoImageContent(), { type: "text" as const, text: `Error: ${message}` }],
     isError: true,
-    _meta: { ...APP_UI_META },
+    _meta: { ...KNOWLEDGE_APP_UI_META },
   };
 }
 
@@ -79,7 +79,7 @@ registerAppTool(
     description:
       "Summarise which documentation corpora are configured and currently loaded (id, label, root path, doc counts). Use this when asked what docs the MCP has. For individual page paths, use list_docs.",
     inputSchema: {},
-    _meta: APP_UI_META,
+    _meta: KNOWLEDGE_APP_UI_META,
   },
   async () => {
     try {
@@ -101,7 +101,7 @@ registerAppTool(
       corpus: corpusFilterSchema,
       area: corpusFilterSchema.describe("Alias of corpus (kept for compatibility)."),
     },
-    _meta: APP_UI_META,
+    _meta: KNOWLEDGE_APP_UI_META,
   },
   async ({ corpus, area }) => {
     try {
@@ -133,7 +133,7 @@ registerAppTool(
         .string()
         .describe("Corpus path, e.g. user-guide/....md, tech-arch/....md, abbey-view/....md"),
     },
-    _meta: APP_UI_META,
+    _meta: KNOWLEDGE_APP_UI_META,
   },
   async ({ relativePath }) => {
     try {
@@ -161,7 +161,7 @@ registerAppTool(
         .optional()
         .describe("Search file contents (default true). Set false for path/title only."),
     },
-    _meta: APP_UI_META,
+    _meta: KNOWLEDGE_APP_UI_META,
   },
   async ({ query, corpus, area, contentSearch }) => {
     try {
@@ -193,7 +193,7 @@ registerAppTool(
         .optional()
         .describe("Optional job id when convert tools start writing a job store."),
     },
-    _meta: APP_UI_META,
+    _meta: KNOWLEDGE_APP_UI_META,
   },
   async ({ jobId }) => {
     try {
@@ -217,7 +217,7 @@ registerAppTool(
     title: "Approved plugins and MCPs",
     description: "Return User Guide page 06: approved Team Marketplace plugins and MCP servers.",
     inputSchema: {},
-    _meta: APP_UI_META,
+    _meta: KNOWLEDGE_APP_UI_META,
   },
   async () => {
     try {
@@ -236,7 +236,7 @@ registerAppTool(
     title: "Approved models",
     description: "Return User Guide page 05: approved models.",
     inputSchema: {},
-    _meta: APP_UI_META,
+    _meta: KNOWLEDGE_APP_UI_META,
   },
   async () => {
     try {
@@ -255,7 +255,7 @@ registerAppTool(
     title: "Network Access Controls summary",
     description: "Return User Guide page 08 (NAC). Points to Admin Guide for the authoritative table.",
     inputSchema: {},
-    _meta: APP_UI_META,
+    _meta: KNOWLEDGE_APP_UI_META,
   },
   async () => {
     try {
@@ -274,7 +274,7 @@ registerAppTool(
     title: "Cursor Change Form",
     description: "Return User Guide page 04: how to request MCP/plugin/NAC and other changes.",
     inputSchema: {},
-    _meta: APP_UI_META,
+    _meta: KNOWLEDGE_APP_UI_META,
   },
   async () => {
     try {
@@ -293,7 +293,7 @@ registerAppTool(
     title: "AI02 governance policy",
     description: "Return AI02 Business Use of Artificial Intelligence (User Guide copy preferred).",
     inputSchema: {},
-    _meta: APP_UI_META,
+    _meta: KNOWLEDGE_APP_UI_META,
   },
   async () => {
     try {
@@ -313,7 +313,7 @@ registerAppTool(
     description:
       "Return the start of admin-guide/CursorAI-Administration.md. For deep topics, use search_docs or get_doc.",
     inputSchema: {},
-    _meta: APP_UI_META,
+    _meta: KNOWLEDGE_APP_UI_META,
   },
   async () => {
     try {
@@ -333,7 +333,7 @@ registerAppTool(
     description:
       "List named Settings profiles from the local ParaDOCS data directory (same Profiles menu as the desktop app). Returns profile names, default profile, and highlight toggles for each. Use before convert when choosing a --profile.",
     inputSchema: {},
-    _meta: APP_UI_META,
+    _meta: KNOWLEDGE_APP_UI_META,
   },
   async () => {
     try {
@@ -363,7 +363,7 @@ registerAppTool(
           'Profile name from list_settings_profiles, or "active" / omit for current settings.json',
         ),
     },
-    _meta: APP_UI_META,
+    _meta: KNOWLEDGE_APP_UI_META,
   },
   async ({ profile }) => {
     try {
@@ -389,7 +389,7 @@ registerAppTool(
     inputSchema: {
       relativePath: z.string(),
     },
-    _meta: APP_UI_META,
+    _meta: KNOWLEDGE_APP_UI_META,
   },
   async ({ relativePath }) => {
     try {

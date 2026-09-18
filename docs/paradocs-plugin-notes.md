@@ -9,8 +9,8 @@ Working notes for the **ParaDOCS** Cursor plugin and **Paragon Knowledge** MCP (
 
 - **Name:** plugin **ParaDOCS**; MCP / Apps chrome **Paragon Knowledge** (not a generic "Cursor plugin" label).
 - **Read/search MCP:** First-class corpora (guides, tech-arch, abbey-view, …). Use `list_corpora` for inventory; no "extra docs" concept. `get_doc` / relevant `search_docs` hits surface `diagramOcr` when embedded images were skipped (EMF/WMF) or produced empty OCR; future OCR runs write `ocr_unread` + an "Unreadable or empty OCR" list in the Markdown.
-- **Convert:** Headless ParaDOCS CLI first, then MCP tools in this plugin (`convert_file` / `convert_folder` / `job_status`). No Word COM by default; legacy `.doc` deferred.
-- **Settings:** Read real ParaDOCS profiles via `list_settings_profiles` / `get_settings_profile` (from `ParaDOCS_Data_*/settings_profiles.json`).
+- **Convert:** Bundled Python engine in `engine/` + MCP tools (`convert_file` / `convert_folder` / `job_status`) registered via `mcp.json` on the Team Marketplace plugin. No Word COM by default; legacy `.doc` deferred. Optional Paragon Knowledge read/search remains under `src/knowledge/` (not shipped by default).
+- **Settings:** Bundled ripping profiles in `engine/profiles/` via `list_settings_profiles` / `get_settings_profile`. Desktop ParaDOCS data-dir profiles remain available to the optional Knowledge MCP build.
 - **Cross-repo docs:** Rules `changelog-ownership`, `platform-docs-consistency`, `kanban-board-sync`, `ui-labels-and-input-values` (bold UI; code for typed values; human and AI), `hitl-morning-checklist-sync` (keep `cursor-test` Docs-as-Code §2 HITL table current on ops changes); skill `edit-platform-docs` for platform/operator Markdown across workspace repos.
 - **Out of scope for this plugin:** Admin dashboards, webhook harness, unrelated Azure/GitLab tooling.
 

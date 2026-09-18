@@ -38,6 +38,7 @@ $include = @(
   "scripts",
   "src",
   "ui",
+  "engine",
   "dist",
   "mcp.json",
   "package.json",

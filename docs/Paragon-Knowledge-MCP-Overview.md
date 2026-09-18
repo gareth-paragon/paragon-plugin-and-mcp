@@ -1,8 +1,8 @@
 # Paragon Knowledge overview
 
-Early prototype documentation for the **Paragon Knowledge** MCP server (documentation and knowledge retrieval in Cursor). Usually installed via the **ParaDOCS** plugin.
+Optional **Paragon Knowledge** MCP server (documentation search and retrieval in Cursor). **Not** part of the default ParaDOCS Team Marketplace install — the marketplace plugin ships the **paradocs-convert** MCP instead. Build from `src/knowledge/` when you need corpus search pilots.
 
-Plugin install, rules, and skills: [`ParaDOCS-Plugin-Overview.md`](ParaDOCS-Plugin-Overview.md). Operator build notes: [`paradocs-plugin-notes.md`](paradocs-plugin-notes.md).
+Plugin install (convert MCP, rules, skills): [`ParaDOCS-Plugin-Overview.md`](ParaDOCS-Plugin-Overview.md). Operator build notes: [`paradocs-plugin-notes.md`](paradocs-plugin-notes.md).
 
 <div style="color: #1565c0; background-color: #e3f2fd; border-left: 4px solid #1565c0; padding: 8px 12px; margin: 12px 0;">
 ℹ️ <span style="font-weight: 600;">NOTE:</span> Change history for this MCP is at the bottom of this page under <a href="#8-changelog">§8. Changelog</a>.
@@ -16,7 +16,7 @@ In Cursor **Customize → MCP**, it appears as **Paragon Knowledge**. The parent
 
 ## 2. Quickstart
 
-After the ParaDOCS plugin is installed and **Paragon Knowledge** shows **Connected**:
+Build the optional server (`npm run build:server:knowledge`) and register `dist/knowledge/index.js` in your MCP config with corpus env vars (see §5). After **Paragon Knowledge** shows **Connected**:
 
 1. Open a Cursor chat (Agent mode).
 2. Ask a documentation question, for example:
@@ -34,7 +34,7 @@ After the ParaDOCS plugin is installed and **Paragon Knowledge** shows **Connect
 
 ## 3. MCP tools and resources
 
-The **Name** column matches the identifier in code (`src/index.ts` for tools; `src/appsUi.ts` for the App resource). Agents and MCP clients use these exact names.
+The **Name** column matches the identifier in code (`src/knowledge/index.ts` for tools; `src/appsUi.ts` for the App resource). Agents and MCP clients use these exact names.
 
 | Name | What it does |
 | :--- | :--- |
